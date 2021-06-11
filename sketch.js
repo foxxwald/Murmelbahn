@@ -169,24 +169,22 @@ function keyPressed() {
 }
 
 function scrollFollow(matterObj) {
-  if (insideViewport(matterObj) == false) {
-    const $element = $('#parent');
+  const $element = $('#parent');
+  if (insideViewport($element, matterObj) == false) {
     if ($element.is(':animated') == false) {
       $element.animate({
         /*     scrollLeft: ball.position.x, */
-        scrollTop: ball.position.y
+        scrollTop: (Math.floor((ball.position.y / 675 )) *675)
       }, 100);
     }
   }
 }
 
-function insideViewport(matterObj) {
+function insideViewport(element, matterObj) {
   const x = matterObj.position.x;
   const y = matterObj.position.y;
-  const pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
-  const pageYOffset = window.pageYOffset || document.documentElement.scrollTop;
-  if (x >= pageXOffset && x <= pageXOffset + windowWidth &&
-    y >= pageYOffset && y <= pageYOffset + windowHeight) {
+  const pageYOffset = 675;
+  if (y <= pageYOffset ) {
     return true;
   } else {
     return false;
