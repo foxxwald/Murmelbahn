@@ -31,19 +31,21 @@
       /*  background-position: center; */
     }
 
-    #theCanvas {
-      border: 10px solid grey;
-      border-radius: 5px;
-      width: 1200px;
-      margin: auto;
+    #parent{
+      position: absolute;
+      max-height: 675px;
+      height: 675px;
+      overflow: auto;
       top: 0px;
       right: 0px;
       left: 0px;
       bottom: 0px;
-      position: absolute;
-      max-height: 675px;
-      height: 675px;
-      overflow: scroll;
+      border: 10px solid grey;
+      border-radius: 5px;
+      width: 1200px;
+      margin: auto;
+    }
+    #theCanvas {
       background-size: cover;
       background-image: url(Bilder/Innenleben960.svg);
       background-repeat: no-repeat;
@@ -52,7 +54,9 @@
 </head>
 
 <body>
-  <div id="theCanvas"></div>
+  <div id="parent">
+    <div id="theCanvas"></div>
+  </div>
 </body>
 
 </html>

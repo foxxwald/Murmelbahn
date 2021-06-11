@@ -13,7 +13,6 @@ let engine
 let circle;
 let obstacle;
 let slide;
-halloooo
 
 const drawBody = Helpers.drawBody;
 const drawSprite = Helpers.drawSprite;
@@ -171,12 +170,12 @@ function keyPressed() {
 
 function scrollFollow(matterObj) {
   if (insideViewport(matterObj) == false) {
-    const $element = $('html, body');
+    const $element = $('#parent');
     if ($element.is(':animated') == false) {
       $element.animate({
         /*     scrollLeft: ball.position.x, */
         scrollTop: ball.position.y
-      }, 1000);
+      }, 100);
     }
   }
 }
