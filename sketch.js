@@ -177,20 +177,38 @@ function scrollFollow(matterObj) {
   if (insideViewport($element, matterObj) == false) {
     if ($element.is(':animated') == false) {
       $element.animate({
-        /*     scrollLeft: ball.position.x, */
-        scrollTop: (Math.floor((ball.position.y / 675)) * 675)
-      }, 100);
+        scrollTop: ball.position.y
+      }, 1000);
     }
   }
 }
 
-function insideViewport(element, matterObj) {
+
+function insideViewport(matterObj) {
   const x = matterObj.position.x;
   const y = matterObj.position.y;
-  const pageYOffset = 675;
-  if (y <= pageYOffset) {
+  const pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
+  const pageYOffset = window.pageYOffset || document.documentElement.scrollTop;
+  if (x >= pageXOffset && x <= pageXOffset + windowWidth &&
+    y >= pageYOffset && y <= pageYOffset + windowHeight) {
     return true;
   } else {
     return false;
   }
 }
+
+/* function insideViewport(element, matterObj) {
+  const x = matterObj.position.x;
+  const y = matterObj.position.y;
+  const pageYOffset = 1200;
+  if (y <= pageYOffset) {
+    return true;
+  } else {
+    return false;
+  }
+} */
+
+
+
+/*    scrollTop: (Math.floor((ball.position.y / 1200)) * 1200)
+        }, 100); */
