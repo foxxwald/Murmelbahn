@@ -18,7 +18,7 @@ const drawBody = Helpers.drawBody;
 const drawSprite = Helpers.drawSprite;
 
 let hitsound;
-let soundfeld;
+let soundfeld2;
 let ground;
 let ball;
 let canvas;
@@ -31,7 +31,7 @@ let treppe3;
 let treppe4;
 
 function preload() {
-  httpGet("svg/soundfeld.svg", "text", false, function (response) {
+  httpGet("svg/soundfeld2.svg", "text", false, function (response) {
     // when the HTTP request completes ...
     // 1. parse the svg and get the path
     const parser = new DOMParser();
@@ -63,32 +63,31 @@ function setupMatter(svgPathElement) {
   };
 
 
- /*  schiefe Ebene schwarz  */ground = Bodies.rectangle(148, 120, 230, 10, {
+ /*  schiefe Ebene schwarz  */ground = Bodies.rectangle(110, 90, 190, 10, {
     isStatic: true, angle: Math.PI * 0.03
   });
 
-  soundfeld = Bodies.fromVertices(340, 180, Matter.Svg.pathToVertices(svgPathElement), {
-    isStatic: true, scale: 0, label: 'soundfeld'
+  soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement), {
+    isStatic: true, scale: 0, label: 'soundfeld2'
   });
-
 
 
   rectMode(CORNER);
   //TREPPE
-  /*  Treppe1  */ treppe1 = Bodies.rectangle(445, 325, 95, 6, {
+  /*  Treppe1  */ treppe1 = Bodies.rectangle(350, 250, 95, 6, {
     isStatic: true,
   });
 
 
-  /*  Treppe2  */ treppe2 = Bodies.rectangle(463, 341, 125, 6, {
+  /*  Treppe2  */ treppe2 = Bodies.rectangle(365, 262, 125, 6, {
     isStatic: true,
   });
 
-    /*  Treppe3  */ treppe3 = Bodies.rectangle(485, 355, 170, 6, {
+    /*  Treppe3  */ treppe3 = Bodies.rectangle(388, 272, 170, 6, {
     isStatic: true,
   });
 
-    /*  Treppe4  */ treppe4 = Bodies.rectangle(515, 370, 230, 6, {
+    /*  Treppe4  */ treppe4 = Bodies.rectangle(403, 282, 200, 6, {
     isStatic: true,
   });
 
@@ -103,7 +102,7 @@ function setupMatter(svgPathElement) {
     const pairs = event.pairs[0];
     const bodyA = pairs.bodyA;
     const bodyB = pairs.bodyB;
-    if (bodyA.label === "soundfeld" || bodyB.label === "soundfeld") {
+    if (bodyA.label === "soundfeld2" || bodyB.label === "soundfeld2") {
       hitsound.play();
 
     } console.log(bodyA.label)
@@ -142,7 +141,7 @@ function draw() {
   drawBody(treppe2);
   drawBody(treppe3);
   drawBody(treppe4);
-  /* drawBody(soundfeld); */
+  drawBody(soundfeld);
 
 
 
@@ -162,14 +161,17 @@ function keyPressed() {
     }
     // use current direction and velocity for the jump
     Body.applyForce(
-      ball,
-      { x: ball.position.x, y: ball.position.y },
-      { x: (0.001 * direction), y: -0.005 }
+      ball, {
+      x: ball.position.x,
+      y: ball.position.y
+    }, {
+      x: (0.001 * direction),
+      y: -0.005
+    }
     );
   }
 }
 
-//Scrollfollow
 function scrollFollow(matterObj) {
   const $element = $('#parent');
   if (insideViewport($element, matterObj) == false) {
