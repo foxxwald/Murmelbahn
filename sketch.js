@@ -14,11 +14,17 @@ let circle;
 let obstacle;
 let slide;
 
+let propeller;
+let propeller2;
+let angle = 0;
+let angle2 = 5;
+
 const drawBody = Helpers.drawBody;
 const drawSprite = Helpers.drawSprite;
 
 let hitsound;
 let soundfeld2;
+let popup;
 let ground;
 let ball;
 let canvas;
@@ -62,9 +68,25 @@ function setupMatter(svgPathElement) {
     max: { x: width, y: height }
   };
 
+  //PROPELLER
+  propeller = Bodies.rectangle(450, 350, 55, 6, {
+    isStatic: true, angle: angle
+  });
+  //PROPELLER
+  propeller2 = Bodies.rectangle(450, 350, 55, 6, {
+    isStatic: true, angle2: angle2
+  });
 
- /*  schiefe Ebene schwarz  */ground = Bodies.rectangle(110, 90, 190, 10, {
+
+
+  /*  popup  */
+  popup = Bodies.rectangle(110, 90, 190, 10, {
     isStatic: true, angle: Math.PI * 0.03
+  });
+
+  /*  ground  */
+  ground = Bodies.rectangle(260, 300, 580, 5, {
+    isStatic: true,
   });
 
   soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement), {
@@ -72,7 +94,7 @@ function setupMatter(svgPathElement) {
   });
 
 
-  rectMode(CORNER);
+
   //TREPPE
   /*  Treppe1  */ treppe1 = Bodies.rectangle(350, 250, 95, 6, {
     isStatic: true,
@@ -83,11 +105,11 @@ function setupMatter(svgPathElement) {
     isStatic: true,
   });
 
-    /*  Treppe3  */ treppe3 = Bodies.rectangle(388, 272, 170, 6, {
+  /*  Treppe3  */ treppe3 = Bodies.rectangle(388, 272, 170, 6, {
     isStatic: true,
   });
 
-    /*  Treppe4  */ treppe4 = Bodies.rectangle(403, 282, 200, 6, {
+  /*  Treppe4 */  treppe4 = Bodies.rectangle(403, 282, 200, 6, {
     isStatic: true,
   });
 
@@ -108,7 +130,7 @@ function setupMatter(svgPathElement) {
     } console.log(bodyA.label)
   });
 
-  World.add(engine.world, [ball, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound]);
+  World.add(engine.world, [ball, popup, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2]);
 
   Engine.run(engine);
 }
@@ -123,7 +145,7 @@ function draw() {
 
   noStroke();
   fill(0);
-  drawBody(ground);
+
 
   scrollFollow(ball);
 
@@ -136,13 +158,26 @@ function draw() {
     fill('pink');
   }
 
-  rectMode(CORNER);
+
   drawBody(treppe1);
   drawBody(treppe2);
   drawBody(treppe3);
   drawBody(treppe4);
   drawBody(soundfeld);
+  drawBody(propeller);
+  drawBody(propeller2);
+  drawBody(popup);
+  drawBody(ground);
 
+  // angle of propeller
+  Body.setAngle(propeller, angle);
+  Body.setAngularVelocity(propeller, 0.15);
+  angle -= 0.07;
+
+  // angle of propeller2
+  Body.setAngle(propeller2, angle2);
+  Body.setAngularVelocity(propeller2, 0.15);
+  angle2 -= 0.07;
 
 
 
@@ -157,7 +192,7 @@ function keyPressed() {
     let direction = 1; // circle runs left to right ->
     if ((ball.position.x - ball.positionPrev.x) < 0) {
       direction = 1;
-      //direction = -1; circle runs right to left <-
+      /*  direction = -1; circle runs right to left */
     }
     // use current direction and velocity for the jump
     Body.applyForce(
