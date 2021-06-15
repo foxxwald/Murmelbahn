@@ -30,7 +30,9 @@ let ground;
 let ball;
 let canvas;
 let ballImg;
-let soundfeldImg;
+/* let soundfeldImg; */
+
+let herzkurve;
 
 let seiter;
 let winkel;
@@ -42,7 +44,7 @@ let treppe4;
 
 
 function preload() {
-  httpGet("svg/soundfeld2.svg", "text", false, function (response) {
+  httpGet("svg/soundfeld2.svg" || "svg/herzkurve.svg", "text", false, function (response) {
     // when the HTTP request completes ...
     // 1. parse the svg and get the path
     const parser = new DOMParser();
@@ -51,9 +53,16 @@ function preload() {
     // 2. setup all matter.js related things
     setupMatter(svgPathElement);
   });
+  /*  httpGet("svg/herzkurve.svg", "text", false, function (response) {
+     // when the HTTP request completes ...
+     // 1. parse the svg and get the path
+     const parser = new DOMParser();
+     const svgDoc = parser.parseFromString(response, "image/svg+xml");
+     const svgPathElement = svgDoc.querySelector("path");
+     // 2. setup all matter.js related things
+     setupMatter(svgPathElement);
+   }); */
 }
-
-
 
 function setupMatter(svgPathElement) {
 
@@ -94,8 +103,12 @@ function setupMatter(svgPathElement) {
     isStatic: true,
   });
 
-  soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement), {
+  /* Soundfeld */ soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement), {
     isStatic: true, scale: 0, label: 'soundfeld2'
+  });
+
+  /* Herzkurve */  herzkurve = Bodies.fromVertices(100, 150, Matter.Svg.pathToVertices(svgPathElement), {
+    isStatic: true, scale: 0, label: 'herzkurve'
   });
 
 /*  Seite rechts  */ seiter = Bodies.rectangle(526, 250, 5, 1200, {
@@ -138,11 +151,15 @@ function setupMatter(svgPathElement) {
     const bodyB = pairs.bodyB;
     if (bodyA.label === "soundfeld2" || bodyB.label === "soundfeld2") {
       hitsound.play();
-
-    } console.log(bodyA.label)
+    }
+    // change direction
+    if (bodyA.label === "winkel" || bodyB.label === "winkel") {
+      direction = -5;
+    }
   });
 
-  World.add(engine.world, [ball, popup, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel]);
+
+  World.add(engine.world, [ball, popup, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, herzkurve]);
 
   Engine.run(engine);
 }
@@ -182,6 +199,7 @@ function draw() {
   drawBody(ground);
   drawBody(seiter);
   drawBody(winkel);
+  drawBody(herzkurve);
 
   // angle of propeller
   Body.setAngle(propeller, angle);
@@ -222,14 +240,14 @@ function keyPressed() {
 }
 
 
-Matter.Events.on(engine, 'collisionStart', function (event) {
+/* Matter.Events.on(engine, 'collisionStart', function (event) {
   const pairs = event.pairs[0];
   const bodyA = pairs.winkelA;
   if (bodyA.label === "winkel") {
     direction = -1;
 
   } console.log(winkel.label)
-});
+}); */
 
 
 function scrollFollow(matterObj) {
