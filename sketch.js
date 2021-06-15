@@ -24,13 +24,16 @@ const drawBody = Helpers.drawBody;
 const drawSprite = Helpers.drawSprite;
 
 let hitsound;
-let soundfeld2;
+let soundfeld;
 let popup;
 let ground;
+let ground2;
 let ball;
 let canvas;
 let ballImg;
-/* let soundfeldImg; */
+
+let ordner1;
+let ordner2;
 
 let herzkurve;
 let direction = 1
@@ -43,8 +46,37 @@ let treppe2;
 let treppe3;
 let treppe4;
 
-
 function preload() {
+  let svgPathElement1, svgPathElement2;
+
+
+
+  httpGet("svg/soundfeld2.svg", "text", false, function (response) {
+    // when the HTTP request completes ...
+    // 1. parse the svg and get the path
+    const parser = new DOMParser();
+    const svgDoc = parser.parseFromString(response, "image/svg+xml");
+    svgPathElement1 = svgDoc.querySelector("path");
+    // 2. setup all matter.js related things
+    if (svgPathElement2) {
+      setupMatter(svgPathElement1, svgPathElement2);
+    }
+  });
+  httpGet("svg/herzkurve2.svg", "text", false, function (response) {
+    // when the HTTP request completes ...
+    // 1. parse the svg and get the path
+    const parser = new DOMParser();
+    const svgDoc = parser.parseFromString(response, "image/svg+xml");
+    svgPathElement2 = svgDoc.querySelector("path");
+    // 2. setup all matter.js related things
+    if (svgPathElement1) {
+      setupMatter(svgPathElement1, svgPathElement2);
+    }
+  });
+}
+
+/* function preload() {
+  let svgPathElement1, svgPathElement2;
   httpGet("svg/soundfeld2.svg", "text", false, function (response) {
     httpGet("svg/herzkurve.svg", "text", false, function (response2) {
       // when the HTTP request completes ...
@@ -57,9 +89,9 @@ function preload() {
     });
 
   });
-}
+} */
 
-function setupMatter(svgPathElement) {
+function setupMatter(svgPathElement1, svgPathElement2) {
 
   let canvas = createCanvas(1200, windowHeight * 2)
   canvas.parent('theCanvas')
@@ -94,16 +126,21 @@ function setupMatter(svgPathElement) {
   });
 
   /*  ground  */
-  ground = Bodies.rectangle(260, 300, 485, 5, {
+  ground = Bodies.rectangle(260, 300, 485, 8, {
     isStatic: true,
   });
 
-  /* Soundfeld */ soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement), {
+  ground2
+  ground2 = Bodies.rectangle(300, 600, 600, 8, {
+    isStatic: true,
+  });
+
+  /* Soundfeld */ soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement1), {
     isStatic: true, scale: 0, label: 'soundfeld2'
   });
 
-  /* Herzkurve */  herzkurve = Bodies.fromVertices(100, 150, Matter.Svg.pathToVertices(svgPathElement), {
-    isStatic: true, scale: 0, label: 'herzkurve'
+  /* Herzkurve */  herzkurve = Bodies.fromVertices(100, 150, Matter.Svg.pathToVertices(svgPathElement2), {
+    isStatic: true, scale: 0, label: 'herzkurve2'
   });
 
 /*  Seite rechts  */ seiter = Bodies.rectangle(526, 250, 5, 1200, {
@@ -115,8 +152,18 @@ function setupMatter(svgPathElement) {
   });
 
 
+//ORDNER
+  /*  ordner1  */ ordner1 = Bodies.rectangle(450, 565, 60, 32, {
+    isStatic: true,
+  });
+
+   /*  ordner2  */ ordner2 = Bodies.rectangle(55, 635, 60, 32, {
+    isStatic: true,
+  });
+
+
   //TREPPE
-  /*  Treppe1  */ treppe1 = Bodies.rectangle(350, 250, 95, 6, {
+  /*  Treppe1  */ treppe1 = Bodies.rectangle(355, 250, 95, 6, {
     isStatic: true,
   });
 
@@ -152,13 +199,10 @@ function setupMatter(svgPathElement) {
       direction = -1;
     }
 
-    if (bodyA.label === "winkel" || bodyB.label === "winkel") {
-      direction = -1;
-    }
   });
 
 
-  World.add(engine.world, [ball, popup, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, herzkurve]);
+  World.add(engine.world, [ball, popup, ground, ground2, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, /* herzkurve, */ ordner1, ordner2]);
 
   Engine.run(engine);
 }
@@ -196,9 +240,12 @@ function draw() {
   drawBody(propeller2);
   drawBody(popup);
   drawBody(ground);
+  drawBody(ground2);
   drawBody(seiter);
   drawBody(winkel);
-  drawBody(herzkurve);
+  /* drawBody(herzkurve); */
+  drawBody(ordner1);
+  drawBody(ordner2);
 
   // angle of propeller
   Body.setAngle(propeller, angle);
