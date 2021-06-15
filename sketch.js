@@ -17,7 +17,7 @@ let slide;
 
 let propeller;
 let propeller2;
-let angle = 0;
+let angle = -100;
 let angle2 = 5;
 
 const drawBody = Helpers.drawBody;
@@ -33,6 +33,7 @@ let ballImg;
 /* let soundfeldImg; */
 
 let herzkurve;
+let direction = 1
 
 let seiter;
 let winkel;
@@ -44,24 +45,18 @@ let treppe4;
 
 
 function preload() {
-  httpGet("svg/soundfeld2.svg" || "svg/herzkurve.svg", "text", false, function (response) {
-    // when the HTTP request completes ...
-    // 1. parse the svg and get the path
-    const parser = new DOMParser();
-    const svgDoc = parser.parseFromString(response, "image/svg+xml");
-    const svgPathElement = svgDoc.querySelector("path");
-    // 2. setup all matter.js related things
-    setupMatter(svgPathElement);
+  httpGet("svg/soundfeld2.svg", "text", false, function (response) {
+    httpGet("svg/herzkurve.svg", "text", false, function (response2) {
+      // when the HTTP request completes ...
+      // 1. parse the svg and get the path
+      const parser = new DOMParser();
+      const svgDoc = parser.parseFromString(response, "image/svg+xml");
+      const svgPathElement = svgDoc.querySelector("path");
+      // 2. setup all matter.js related things
+      setupMatter(svgPathElement);
+    });
+
   });
-  /*  httpGet("svg/herzkurve.svg", "text", false, function (response) {
-     // when the HTTP request completes ...
-     // 1. parse the svg and get the path
-     const parser = new DOMParser();
-     const svgDoc = parser.parseFromString(response, "image/svg+xml");
-     const svgPathElement = svgDoc.querySelector("path");
-     // 2. setup all matter.js related things
-     setupMatter(svgPathElement);
-   }); */
 }
 
 function setupMatter(svgPathElement) {
@@ -83,11 +78,11 @@ function setupMatter(svgPathElement) {
   };
 
   //PROPELLER
-  propeller = Bodies.rectangle(450, 350, 55, 6, {
+  propeller = Bodies.rectangle(460, 360, 55, 6, {
     isStatic: true, angle: angle
   });
-  //PROPELLER
-  propeller2 = Bodies.rectangle(450, 350, 55, 6, {
+  //PROPELLER2
+  propeller2 = Bodies.rectangle(460, 360, 55, 6, {
     isStatic: true, angle2: angle2
   });
 
@@ -99,7 +94,7 @@ function setupMatter(svgPathElement) {
   });
 
   /*  ground  */
-  ground = Bodies.rectangle(260, 300, 490, 5, {
+  ground = Bodies.rectangle(260, 300, 485, 5, {
     isStatic: true,
   });
 
@@ -115,7 +110,7 @@ function setupMatter(svgPathElement) {
     isStatic: true,
   });
 
-  /*  Winkel  */ winkel = Bodies.rectangle(523, 340, 30, 5, {
+  /*  Winkel  */ winkel = Bodies.rectangle(523, 345, 30, 5, {
     isStatic: true, label: "winkel"
   });
 
@@ -153,6 +148,10 @@ function setupMatter(svgPathElement) {
       hitsound.play();
     }
     // change direction
+    if (bodyA.label === "winkel" || bodyB.label === "winkel") {
+      direction = -1;
+    }
+
     if (bodyA.label === "winkel" || bodyB.label === "winkel") {
       direction = -1;
     }
@@ -221,10 +220,7 @@ function draw() {
 function keyPressed() {
   // is SPACE pressed?
   if (keyCode === 32) {
-    let direction = 1; // circle runs left to right ->
-    if ((ball.position.x - ball.positionPrev.x) < 0) {
-      direction = 1;
-    }
+
 
     // use current direction and velocity for the jump
     Body.applyForce(
@@ -240,14 +236,7 @@ function keyPressed() {
 }
 
 
-/* Matter.Events.on(engine, 'collisionStart', function (event) {
-  const pairs = event.pairs[0];
-  const bodyA = pairs.winkelA;
-  if (bodyA.label === "winkel") {
-    direction = -1;
 
-  } console.log(winkel.label)
-}); */
 
 
 function scrollFollow(matterObj) {
