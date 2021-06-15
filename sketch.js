@@ -1,3 +1,4 @@
+Matter.use('matter-wrap');
 const Engine = Matter.Engine
 const Render = Matter.Render
 const World = Matter.World
@@ -31,10 +32,14 @@ let canvas;
 let ballImg;
 let soundfeldImg;
 
+let seiter;
+let winkel;
+
 let treppe1;
 let treppe2;
 let treppe3;
 let treppe4;
+
 
 function preload() {
   httpGet("svg/soundfeld2.svg", "text", false, function (response) {
@@ -80,12 +85,12 @@ function setupMatter(svgPathElement) {
 
 
   /*  popup  */
-  popup = Bodies.rectangle(110, 90, 190, 10, {
-    isStatic: true, angle: Math.PI * 0.03
+  popup = Bodies.rectangle(98, 73, 158, 10, {
+    isStatic: true, angle: Math.PI * 0.035
   });
 
   /*  ground  */
-  ground = Bodies.rectangle(260, 300, 580, 5, {
+  ground = Bodies.rectangle(260, 300, 490, 5, {
     isStatic: true,
   });
 
@@ -93,6 +98,13 @@ function setupMatter(svgPathElement) {
     isStatic: true, scale: 0, label: 'soundfeld2'
   });
 
+/*  Seite rechts  */ seiter = Bodies.rectangle(526, 250, 5, 1200, {
+    isStatic: true,
+  });
+
+  /*  Winkel  */ winkel = Bodies.rectangle(523, 340, 30, 5, {
+    isStatic: true, label: "winkel"
+  });
 
 
   //TREPPE
@@ -130,7 +142,7 @@ function setupMatter(svgPathElement) {
     } console.log(bodyA.label)
   });
 
-  World.add(engine.world, [ball, popup, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2]);
+  World.add(engine.world, [ball, popup, ground, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel]);
 
   Engine.run(engine);
 }
@@ -168,6 +180,8 @@ function draw() {
   drawBody(propeller2);
   drawBody(popup);
   drawBody(ground);
+  drawBody(seiter);
+  drawBody(winkel);
 
   // angle of propeller
   Body.setAngle(propeller, angle);
@@ -192,8 +206,8 @@ function keyPressed() {
     let direction = 1; // circle runs left to right ->
     if ((ball.position.x - ball.positionPrev.x) < 0) {
       direction = 1;
-      /*  direction = -1; circle runs right to left */
     }
+
     // use current direction and velocity for the jump
     Body.applyForce(
       ball, {
@@ -206,6 +220,17 @@ function keyPressed() {
     );
   }
 }
+
+
+Matter.Events.on(engine, 'collisionStart', function (event) {
+  const pairs = event.pairs[0];
+  const bodyA = pairs.winkelA;
+  if (bodyA.label === "winkel") {
+    direction = -1;
+
+  } console.log(winkel.label)
+});
+
 
 function scrollFollow(matterObj) {
   const $element = $('#parent');
