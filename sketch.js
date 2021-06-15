@@ -154,7 +154,7 @@ function setupMatter(svgPathElement) {
     }
     // change direction
     if (bodyA.label === "winkel" || bodyB.label === "winkel") {
-      direction = -5;
+      direction = -1;
     }
   });
 
