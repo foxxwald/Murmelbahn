@@ -58,7 +58,7 @@ function preload() {
     const svgDoc = parser.parseFromString(response, "image/svg+xml");
     svgPathElement1 = svgDoc.querySelector("path");
     // 2. setup all matter.js related things
-    if (svgPathElement2) {
+    if (svgPathElement1) {
       setupMatter(svgPathElement1, svgPathElement2);
     }
   });
@@ -69,7 +69,7 @@ function preload() {
     const svgDoc = parser.parseFromString(response, "image/svg+xml");
     svgPathElement2 = svgDoc.querySelector("path");
     // 2. setup all matter.js related things
-    if (svgPathElement1) {
+    if (svgPathElement2) {
       setupMatter(svgPathElement1, svgPathElement2);
     }
   });
@@ -202,7 +202,7 @@ function setupMatter(svgPathElement1, svgPathElement2) {
   });
 
 
-  World.add(engine.world, [ball, popup, ground, ground2, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, /* herzkurve, */ ordner1, ordner2]);
+  World.add(engine.world, [ball, popup, ground, ground2, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, ordner1, ordner2]);
 
   Engine.run(engine);
 }
