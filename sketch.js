@@ -35,7 +35,7 @@ let ballImg;
 let ordner1;
 let ordner2;
 
-let herzkurve;
+let herzkurve2;
 let direction = 1
 
 let seiter;
