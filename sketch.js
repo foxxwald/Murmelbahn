@@ -107,13 +107,13 @@ function setupMatter(svgPathElement1, svgPathElement2) {
 
   /* Soundfeld */
   soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement2), {
-    isStatic: true, scale: 1, label: 'soundfeld2'
+    isStatic: true, scale: 1, label: 'Soundfeld'
   });
 
   /* Herzkurve */
   console.log(svgPathElement1);
-  herzkurve = Bodies.fromVertices(300, 600, Matter.Svg.pathToVertices(svgPathElement1), {
-    isStatic: true, scale: 1, label: 'herzkurve2'
+  herzkurve = Bodies.fromVertices(300, 440, Matter.Svg.pathToVertices(svgPathElement1), {
+    isStatic: true, scale: 1, label: 'Herzkurve'
   });
   console.log(herzkurve);
 
@@ -139,7 +139,7 @@ function setupMatter(svgPathElement1, svgPathElement2) {
 
 
   //TREPPE
-  /*  Treppe1  */ treppe1 = Bodies.rectangle(355, 250, 95, 6, {
+  /*  Treppe1  */ treppe1 = Bodies.rectangle(350  , 250, 95, 6, {
     isStatic: true,
   });
 
@@ -167,7 +167,7 @@ function setupMatter(svgPathElement1, svgPathElement2) {
     const pairs = event.pairs[0];
     const bodyA = pairs.bodyA;
     const bodyB = pairs.bodyB;
-    if (bodyA.label === "soundfeld2" || bodyB.label === "soundfeld2") {
+    if (bodyA.label === "Soundfeld" || bodyB.label === "Soundfeld") {
       hitsound.play();
     }
     // change direction
@@ -178,9 +178,8 @@ function setupMatter(svgPathElement1, svgPathElement2) {
   });
 
 
-  // World.add(engine.world, [ball, popup, ground, ground2, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, ordner1, ordner2, herzkurve]);
 
-  World.add(engine.world, [ball, herzkurve, soundfeld]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, ordner1, ordner2]);
 
   Engine.run(engine);
 }
@@ -204,14 +203,14 @@ function draw() {
 
 
   // visualize collision
-  // const collided = Matter.SAT.collides(soundfeld, ball).collided;
-  /* if (collided) {
+  const collided = Matter.SAT.collides(soundfeld, ball).collided;
+   if (collided) {
     fill('red');
   } else {
     fill('pink');
-  } */
+  }
 
-  /*   drawBody(treppe1);
+    drawBody(treppe1);
     drawBody(treppe2);
     drawBody(treppe3);
     drawBody(treppe4);
@@ -222,10 +221,10 @@ function draw() {
     drawBody(ground);
     drawBody(ground2);
     drawBody(seiter);
-    drawBody(winkel); */
-  drawBody(herzkurve);
-  /* drawBody(ordner1);
-  drawBody(ordner2); */
+    drawBody(winkel);
+    drawBody(herzkurve);
+    drawBody(ordner1);
+    drawBody(ordner2);
 
   // angle of propeller
   Body.setAngle(propeller, angle);
