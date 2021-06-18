@@ -35,8 +35,8 @@ let ballImg;
 let ordner1;
 let ordner2;
 
-let herzkurve2;
-let direction = 1
+let herzkurve;
+let direction = 1;
 
 let seiter;
 let winkel;
@@ -51,45 +51,19 @@ function preload() {
 
 
 
-  httpGet("svg/soundfeld2.svg", "text", false, function (response) {
+  httpGet("svg/matter.svg", "text", false, function (response) {
     // when the HTTP request completes ...
     // 1. parse the svg and get the path
     const parser = new DOMParser();
     const svgDoc = parser.parseFromString(response, "image/svg+xml");
-    svgPathElement1 = svgDoc.querySelector("path");
+    const svgPathElement1 = svgDoc.querySelector("#Herzkurve");
+    const svgPathElement2 = svgDoc.querySelector("#Soundfeld");
     // 2. setup all matter.js related things
-    if (svgPathElement1) {
-      setupMatter(svgPathElement1, svgPathElement2);
-    }
-  });
-  httpGet("svg/herzkurve2.svg", "text", false, function (response) {
-    // when the HTTP request completes ...
-    // 1. parse the svg and get the path
-    const parser = new DOMParser();
-    const svgDoc = parser.parseFromString(response, "image/svg+xml");
-    svgPathElement2 = svgDoc.querySelector("path");
-    // 2. setup all matter.js related things
-    if (svgPathElement2) {
+    if (svgPathElement1 && svgPathElement2) {
       setupMatter(svgPathElement1, svgPathElement2);
     }
   });
 }
-
-/* function preload() {
-  let svgPathElement1, svgPathElement2;
-  httpGet("svg/soundfeld2.svg", "text", false, function (response) {
-    httpGet("svg/herzkurve.svg", "text", false, function (response2) {
-      // when the HTTP request completes ...
-      // 1. parse the svg and get the path
-      const parser = new DOMParser();
-      const svgDoc = parser.parseFromString(response, "image/svg+xml");
-      const svgPathElement = svgDoc.querySelector("path");
-      // 2. setup all matter.js related things
-      setupMatter(svgPathElement);
-    });
-
-  });
-} */
 
 function setupMatter(svgPathElement1, svgPathElement2) {
 
@@ -99,8 +73,6 @@ function setupMatter(svgPathElement1, svgPathElement2) {
   ballImg = loadImage('Bilder/ball.png');
 
   engine = Engine.create();
-
-
 
   ball = Bodies.circle(100, 50, 10, { restitution: 0 });
 
@@ -118,8 +90,6 @@ function setupMatter(svgPathElement1, svgPathElement2) {
     isStatic: true, angle2: angle2
   });
 
-
-
   /*  popup  */
   popup = Bodies.rectangle(98, 73, 158, 10, {
     isStatic: true, angle: Math.PI * 0.035
@@ -130,24 +100,30 @@ function setupMatter(svgPathElement1, svgPathElement2) {
     isStatic: true,
   });
 
-  ground2
+
   ground2 = Bodies.rectangle(300, 600, 600, 8, {
     isStatic: true,
   });
 
-  /* Soundfeld */ soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement1), {
-    isStatic: true, scale: 0, label: 'soundfeld2'
+  /* Soundfeld */
+  soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement2), {
+    isStatic: true, scale: 1, label: 'soundfeld2'
   });
 
-  /* Herzkurve */  herzkurve = Bodies.fromVertices(100, 150, Matter.Svg.pathToVertices(svgPathElement2), {
-    isStatic: true, scale: 0, label: 'herzkurve2'
+  /* Herzkurve */
+  console.log(svgPathElement1);
+  herzkurve = Bodies.fromVertices(300, 600, Matter.Svg.pathToVertices(svgPathElement1), {
+    isStatic: true, scale: 1, label: 'herzkurve2'
   });
+  console.log(herzkurve);
 
-/*  Seite rechts  */ seiter = Bodies.rectangle(526, 250, 5, 1200, {
+  /*  Seite rechts  */
+  seiter = Bodies.rectangle(526, 250, 5, 1200, {
     isStatic: true,
   });
 
-  /*  Winkel  */ winkel = Bodies.rectangle(523, 345, 30, 5, {
+  /*  Winkel  */
+  winkel = Bodies.rectangle(523, 345, 30, 5, {
     isStatic: true, label: "winkel"
   });
 
@@ -202,13 +178,18 @@ function setupMatter(svgPathElement1, svgPathElement2) {
   });
 
 
-  World.add(engine.world, [ball, popup, ground, ground2, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, ordner1, ordner2]);
+  // World.add(engine.world, [ball, popup, ground, ground2, soundfeld, treppe1, treppe2, treppe3, treppe4, hitsound, propeller, propeller2, seiter, winkel, ordner1, ordner2, herzkurve]);
+
+  World.add(engine.world, [ball, herzkurve, soundfeld]);
 
   Engine.run(engine);
 }
 
 function draw() {
+
   clear();
+
+  if (herzkurve == undefined) return;
 
   scale(2);
 
@@ -223,29 +204,28 @@ function draw() {
 
 
   // visualize collision
-  const collided = Matter.SAT.collides(soundfeld, ball).collided;
-  if (collided) {
+  // const collided = Matter.SAT.collides(soundfeld, ball).collided;
+  /* if (collided) {
     fill('red');
   } else {
     fill('pink');
-  }
+  } */
 
-
-  drawBody(treppe1);
-  drawBody(treppe2);
-  drawBody(treppe3);
-  drawBody(treppe4);
-  drawBody(soundfeld);
-  drawBody(propeller);
-  drawBody(propeller2);
-  drawBody(popup);
-  drawBody(ground);
-  drawBody(ground2);
-  drawBody(seiter);
-  drawBody(winkel);
-  /* drawBody(herzkurve); */
-  drawBody(ordner1);
-  drawBody(ordner2);
+  /*   drawBody(treppe1);
+    drawBody(treppe2);
+    drawBody(treppe3);
+    drawBody(treppe4);
+    drawBody(soundfeld);
+    drawBody(propeller);
+    drawBody(propeller2);
+    drawBody(popup);
+    drawBody(ground);
+    drawBody(ground2);
+    drawBody(seiter);
+    drawBody(winkel); */
+  drawBody(herzkurve);
+  /* drawBody(ordner1);
+  drawBody(ordner2); */
 
   // angle of propeller
   Body.setAngle(propeller, angle);
