@@ -36,6 +36,7 @@ let ordner1;
 let ordner2;
 
 let herzkurve;
+let yu;
 let direction = 1;
 
 let seiter;
@@ -47,7 +48,7 @@ let treppe3;
 let treppe4;
 
 function preload() {
-  let svgPathElement1, svgPathElement2;
+  let svgPathElement1, svgPathElement2, svgPathElement3;
 
 
 
@@ -58,14 +59,15 @@ function preload() {
     const svgDoc = parser.parseFromString(response, "image/svg+xml");
     const svgPathElement1 = svgDoc.querySelector("#Herzkurve");
     const svgPathElement2 = svgDoc.querySelector("#Soundfeld");
+    const svgPathElement3 = svgDoc.querySelector("#Yu");
     // 2. setup all matter.js related things
-    if (svgPathElement1 && svgPathElement2) {
-      setupMatter(svgPathElement1, svgPathElement2);
+    if (svgPathElement1 && svgPathElement2 && svgPathElement3) {
+      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3);
     }
   });
 }
 
-function setupMatter(svgPathElement1, svgPathElement2) {
+function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3) {
 
   let canvas = createCanvas(1200, windowHeight * 2)
   canvas.parent('theCanvas')
@@ -108,6 +110,11 @@ function setupMatter(svgPathElement1, svgPathElement2) {
   /* Soundfeld */
   soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement2), {
     isStatic: true, scale: 1, label: 'Soundfeld'
+  });
+
+  /* Buchstaben YU */
+  yu = Bodies.fromVertices(60, 760, Matter.Svg.pathToVertices(svgPathElement3), {
+    isStatic: true, scale: 1, label: 'Yu'
   });
 
   /* Herzkurve */
@@ -179,7 +186,7 @@ function setupMatter(svgPathElement1, svgPathElement2) {
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, ordner1, ordner2]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, yu, ordner1, ordner2]);
 
   Engine.run(engine);
 }
@@ -223,6 +230,7 @@ function draw() {
     drawBody(seiter);
     drawBody(winkel);
     drawBody(herzkurve);
+    drawBody (yu);
     drawBody(ordner1);
     drawBody(ordner2);
 
