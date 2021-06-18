@@ -152,9 +152,26 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true,
   });
 
+  //Tastatur
+  /*  tastatur1  */ tastatur1 = Bodies.rectangle(117, 710, 25, 8 , {
+    isStatic: true,
+  });
+
+  /*  tastatur2  */ tastatur2 = Bodies.rectangle(150, 710, 25, 8 , {
+    isStatic: true,
+  });
+
+  /*  tastatur3  */ tastatur3 = Bodies.rectangle(203, 710, 75, 8 , {
+    isStatic: true,
+  });
+
+  /*  tastatur4  */ tastatur4 = Bodies.rectangle(255, 710, 25, 8 , {
+    isStatic: true,
+  });
+
 
   //TREPPE
-  /*  Treppe1  */ treppe1 = Bodies.rectangle(350  , 250, 95, 6, {
+  /*  Treppe1  */ treppe1 = Bodies.rectangle(350, 250, 95, 6, {
     isStatic: true,
   });
 
@@ -194,7 +211,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, yu, strichlinie, ordner1, ordner2]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4 ]);
 
   Engine.run(engine);
 }
@@ -242,6 +259,10 @@ function draw() {
     drawBody(strichlinie);
     drawBody(ordner1);
     drawBody(ordner2);
+    drawBody(tastatur1);
+    drawBody(tastatur2);
+    drawBody(tastatur3);
+    drawBody(tastatur4);
 
   // angle of propeller
   Body.setAngle(propeller, angle);
