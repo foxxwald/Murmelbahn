@@ -37,6 +37,7 @@ let ordner2;
 
 let herzkurve;
 let yu;
+let strichlinie;
 let direction = 1;
 
 let seiter;
@@ -48,7 +49,7 @@ let treppe3;
 let treppe4;
 
 function preload() {
-  let svgPathElement1, svgPathElement2, svgPathElement3;
+  let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4;
 
 
 
@@ -60,14 +61,15 @@ function preload() {
     const svgPathElement1 = svgDoc.querySelector("#Herzkurve");
     const svgPathElement2 = svgDoc.querySelector("#Soundfeld");
     const svgPathElement3 = svgDoc.querySelector("#Yu");
+    const svgPathElement4 = svgDoc.querySelector("#Strichlinie");
     // 2. setup all matter.js related things
-    if (svgPathElement1 && svgPathElement2 && svgPathElement3) {
-      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3);
+    if (svgPathElement1 && svgPathElement2 && svgPathElement3 && svgPathElement4) {
+      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4);
     }
   });
 }
 
-function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3) {
+function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4) {
 
   let canvas = createCanvas(1200, windowHeight * 2)
   canvas.parent('theCanvas')
@@ -116,6 +118,12 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3) {
   yu = Bodies.fromVertices(60, 760, Matter.Svg.pathToVertices(svgPathElement3), {
     isStatic: true, scale: 1, label: 'Yu'
   });
+
+  /* Strichlinie */
+  strichlinie = Bodies.fromVertices(60, 860, Matter.Svg.pathToVertices(svgPathElement4), {
+    isStatic: true, scale: 1, label: 'Strichlinie'
+  });
+
 
   /* Herzkurve */
   console.log(svgPathElement1);
@@ -186,7 +194,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3) {
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, yu, ordner1, ordner2]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, yu, strichlinie, ordner1, ordner2]);
 
   Engine.run(engine);
 }
@@ -230,7 +238,8 @@ function draw() {
     drawBody(seiter);
     drawBody(winkel);
     drawBody(herzkurve);
-    drawBody (yu);
+    drawBody(yu);
+    drawBody(strichlinie);
     drawBody(ordner1);
     drawBody(ordner2);
 
