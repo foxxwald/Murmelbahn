@@ -36,11 +36,13 @@ let ordner1;
 let ordner2;
 
 let herzkurve;
+let mauszeiger;
 let yu;
 let strichlinie;
 let direction = 1;
 
 let seiter;
+let seitel;
 let winkel;
 
 let treppe1;
@@ -62,14 +64,15 @@ function preload() {
     const svgPathElement2 = svgDoc.querySelector("#Soundfeld");
     const svgPathElement3 = svgDoc.querySelector("#Yu");
     const svgPathElement4 = svgDoc.querySelector("#Strichlinie");
+    const svgPathElement5 = svgDoc.querySelector("#Mauszeiger");
     // 2. setup all matter.js related things
-    if (svgPathElement1 && svgPathElement2 && svgPathElement3 && svgPathElement4) {
-      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4);
+    if (svgPathElement1 && svgPathElement2 && svgPathElement3 && svgPathElement4 && svgPathElement5) {
+      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4, svgPathElement5);
     }
   });
 }
 
-function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4) {
+function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4, svgPathElement5) {
 
   let canvas = createCanvas(1200, windowHeight * 2)
   canvas.parent('theCanvas')
@@ -106,7 +109,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   ground2 = Bodies.rectangle(300, 600, 600, 8, {
-    isStatic: true,
+    isStatic: true, label: 'ground2'
   });
 
   /* Soundfeld */
@@ -124,6 +127,11 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true, scale: 1, label: 'Strichlinie'
   });
 
+  /* Mauszeiger */
+  mauszeiger = Bodies.fromVertices(60, 500, Matter.Svg.pathToVertices(svgPathElement5), {
+    isStatic: true, scale: 1, label: 'Mauszeiger'
+  });
+
 
   /* Herzkurve */
   console.log(svgPathElement1);
@@ -137,6 +145,11 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true,
   });
 
+  /*  Seite links  */
+  seitel = Bodies.rectangle(0, 250, 5, 1200, {
+    isStatic: true,
+  });
+
   /*  Winkel  */
   winkel = Bodies.rectangle(523, 345, 30, 5, {
     isStatic: true, label: "winkel"
@@ -144,28 +157,28 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 //ORDNER
-  /*  ordner1  */ ordner1 = Bodies.rectangle(450, 565, 60, 32, {
-    isStatic: true,
+  /*  ordner1  */ ordner1 = Bodies.rectangle(450, 550, 60, 10, {
+    isStatic: true, label: "ordner1"
   });
 
    /*  ordner2  */ ordner2 = Bodies.rectangle(55, 635, 60, 32, {
-    isStatic: true,
+    isStatic: true, label: "ordner2"
   });
 
   //Tastatur
-  /*  tastatur1  */ tastatur1 = Bodies.rectangle(117, 710, 25, 8 , {
+  /*  tastatur1  */ tastatur1 = Bodies.rectangle(117, 710, 25, 8, {
     isStatic: true,
   });
 
-  /*  tastatur2  */ tastatur2 = Bodies.rectangle(150, 710, 25, 8 , {
+  /*  tastatur2  */ tastatur2 = Bodies.rectangle(150, 710, 25, 8, {
     isStatic: true,
   });
 
-  /*  tastatur3  */ tastatur3 = Bodies.rectangle(203, 710, 75, 8 , {
+  /*  tastatur3  */ tastatur3 = Bodies.rectangle(203, 710, 75, 8, {
     isStatic: true,
   });
 
-  /*  tastatur4  */ tastatur4 = Bodies.rectangle(255, 710, 25, 8 , {
+  /*  tastatur4  */ tastatur4 = Bodies.rectangle(255, 710, 25, 8, {
     isStatic: true,
   });
 
@@ -207,11 +220,20 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
       direction = -1;
     }
 
+    if (bodyA.label === "ground2" || bodyB.label === "ground2") {
+      direction = 1;
+    }
+
+    //?????
+    /* if (bodyA.label === "ordner1" || bodyB.label === "ordner1") {
+      ball.position.x;
+    } */
+
   });
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4 ]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, mauszeiger]);
 
   Engine.run(engine);
 }
@@ -236,33 +258,35 @@ function draw() {
 
   // visualize collision
   const collided = Matter.SAT.collides(soundfeld, ball).collided;
-   if (collided) {
+  if (collided) {
     fill('red');
   } else {
     fill('pink');
   }
 
-    drawBody(treppe1);
-    drawBody(treppe2);
-    drawBody(treppe3);
-    drawBody(treppe4);
-    drawBody(soundfeld);
-    drawBody(propeller);
-    drawBody(propeller2);
-    drawBody(popup);
-    drawBody(ground);
-    drawBody(ground2);
-    drawBody(seiter);
-    drawBody(winkel);
-    drawBody(herzkurve);
-    drawBody(yu);
-    drawBody(strichlinie);
-    drawBody(ordner1);
-    drawBody(ordner2);
-    drawBody(tastatur1);
-    drawBody(tastatur2);
-    drawBody(tastatur3);
-    drawBody(tastatur4);
+  drawBody(treppe1);
+  drawBody(treppe2);
+  drawBody(treppe3);
+  drawBody(treppe4);
+  drawBody(soundfeld);
+  drawBody(propeller);
+  drawBody(propeller2);
+  drawBody(popup);
+  drawBody(ground);
+  drawBody(ground2);
+  drawBody(seiter);
+  drawBody(seitel);
+  drawBody(winkel);
+  drawBody(herzkurve);
+  drawBody(yu);
+  drawBody(strichlinie);
+  drawBody(ordner1);
+  drawBody(ordner2);
+  drawBody(tastatur1);
+  drawBody(tastatur2);
+  drawBody(tastatur3);
+  drawBody(tastatur4);
+  drawBody(mauszeiger);
 
   // angle of propeller
   Body.setAngle(propeller, angle);
