@@ -84,8 +84,11 @@ function preload() {
 
 function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4) {
 
-  let canvas = createCanvas(1200, windowHeight * 2)
+  let canvas = createCanvas(1050, 1800)
+  //let canvas = createCanvas(1200, windowHeight * 2)
   canvas.parent('theCanvas')
+
+
 
   ballImg = loadImage('Bilder/ball.png');
   mauszeigerImg = loadImage('Bilder/Mauszeiger.png');
@@ -262,7 +265,6 @@ function draw() {
   noStroke();
   fill(0);
 
-
   //scrollFollow(ball);
 
 
@@ -347,21 +349,20 @@ function scroll(x, y, speed) {
   // Neues Scrollen festlegen - läuft bis die Zielposition erreicht ist,
   // bzw. der Browser nicht mehr scrollen kann
   let moved = true;
+  let element = document.getElementById('parent')
   scrollId = setInterval(function() {
-console.log ('hallo')
     if (moved) {
-      let posX = window.scrollX
-      let posY = window.scrollY
-      window.scrollTo(window.scrollX + Math.min(speed, Math.abs(x - window.scrollX)) * Math.sign(x - window.scrollX), window.scrollY + Math.min(speed, Math.abs(y - window.scrollY)) * Math.sign(y - window.scrollY))
-      moved = (posX != window.scrollX || posY != window.scrollY)
-      console.log(scrollId, window.scrollX, window.scrollY)
+      let posX = element.scrollLeft
+      let posY = element.scrollTop
+      element.scrollTo(element.scrollLeft + Math.min(speed, Math.abs(x - element.scrollLeft)) * Math.sign(x - element.scrollLeft), element.scrollTop + Math.min(speed, Math.abs(y - element.scrollTop)) * Math.sign(y - element.scrollTop))
+      moved = (posX != element.scrollLeft || posY != element.scrollTop)
+      console.log(scrollId, element.scrollLeft, element.scrollTop)
     } else {
       clearInterval(scrollId)
-      //console.log("DONE")
+      console.log("DONE")
     }
   }, 40)
 }
-
 
 
 /*function scrollFollow(matterObj) {
