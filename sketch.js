@@ -31,6 +31,7 @@ let ground2;
 let ball;
 let canvas;
 let ballImg;
+let mauszeigerImg;
 
 let ordner1;
 let ordner2;
@@ -69,20 +70,21 @@ function preload() {
     const svgPathElement2 = svgDoc.querySelector("#Soundfeld");
     const svgPathElement3 = svgDoc.querySelector("#Yu");
     const svgPathElement4 = svgDoc.querySelector("#Strichlinie");
-    const svgPathElement5 = svgDoc.querySelector("#Mauszeiger");
+
     // 2. setup all matter.js related things
-    if (svgPathElement1 && svgPathElement2 && svgPathElement3 && svgPathElement4 && svgPathElement5) {
-      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4, svgPathElement5);
+    if (svgPathElement1 && svgPathElement2 && svgPathElement3 && svgPathElement4) {
+      setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4);
     }
   });
 }
 
-function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4, svgPathElement5) {
+function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4) {
 
   let canvas = createCanvas(1200, windowHeight * 2)
   canvas.parent('theCanvas')
 
   ballImg = loadImage('Bilder/ball.png');
+  mauszeigerImg = loadImage('Bilder/Mauszeiger.png');
 
   engine = Engine.create();
 
@@ -92,6 +94,8 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     min: { x: 0, y: 0 },
     max: { x: width, y: height }
   };
+
+  mauszeiger = Bodies.rectangle(100, 200, 10, 20, { restitution: 0 });
 
   //PROPELLER
   propeller = Bodies.rectangle(460, 360, 55, 6, {
@@ -132,10 +136,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true, scale: 1, label: 'Strichlinie'
   });
 
-  /* Mauszeiger */
-  mauszeiger = Bodies.fromVertices(60, 500, Matter.Svg.pathToVertices(svgPathElement5), {
-    isStatic: true, scale: 1, label: 'Mauszeiger'
-  });
+
 
 
   /* Herzkurve */
@@ -229,10 +230,9 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
       direction = 1;
     }
 
-    //?????
-    /* if (bodyA.label === "ordner1" || bodyB.label === "ordner1") {
-      ball.position.x;
-    } */
+    if (bodyA.label === "ordner1" || bodyB.label === "ordner1") {
+      Body.setPosition(ball, { x: 55, y: 635 });
+    }
 
   });
 
@@ -252,6 +252,7 @@ function draw() {
   scale(2);
 
   drawSprite(ball, ballImg);
+  drawSprite(mauszeiger, mauszeigerImg);
 
 
   noStroke();
@@ -291,7 +292,7 @@ function draw() {
   drawBody(tastatur2);
   drawBody(tastatur3);
   drawBody(tastatur4);
-  drawBody(mauszeiger);
+
 
   // angle of propeller
   Body.setAngle(propeller, angle);
