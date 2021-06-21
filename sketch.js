@@ -56,8 +56,8 @@ let treppe2;
 let treppe3;
 let treppe4;
 
-let mausy = 500;
-let mausstep = 10;
+let mausy = 530;
+let mausstep = 5;
 
 function preload() {
   let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4;
@@ -241,7 +241,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, mauszeiger]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4]);
 
   Engine.run(engine);
 }
@@ -307,11 +307,11 @@ function draw() {
   Body.setAngularVelocity(propeller2, 0.15);
   angle2 -= 0.07;
 
-  /*Body.setPosition(mauszeiger, {x: 150, y: mausy});
+  Body.setPosition(mauszeiger, {x: 150, y: mausy});
   mausy += mausstep
-  if (mausy < 450 || mausy > 550){
+  if (mausy < 510 || mausy > 570){
     mausstep =- mausstep
-  }*/
+  }
 
 
 
