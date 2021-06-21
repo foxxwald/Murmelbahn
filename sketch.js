@@ -10,7 +10,7 @@ const Composites = Matter.Composites
 const Mouse = Matter.Mouse
 const MouseConstraint = Matter.MouseConstraint
 
-let engine
+let engine;
 let circle;
 let obstacle;
 let slide;
@@ -45,13 +45,18 @@ let seiter;
 let seitel;
 let winkel;
 
+let tastatur1;
+let tastatur2;
+let tastatur3;
+let tastatur4;
+
 let treppe1;
 let treppe2;
 let treppe3;
 let treppe4;
 
 function preload() {
-  let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4;
+  let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4, svgPathElement5;
 
 
 
