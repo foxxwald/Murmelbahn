@@ -10,6 +10,7 @@ const Composites = Matter.Composites
 const Mouse = Matter.Mouse
 const MouseConstraint = Matter.MouseConstraint
 
+let scrollId = null;
 let engine;
 let circle;
 let obstacle;
@@ -223,6 +224,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     const bodyB = pairs.bodyB;
     if (bodyA.label === "Soundfeld" || bodyB.label === "Soundfeld") {
       hitsound.play();
+      scroll(0, 500, 5);
     }
     // change direction
     if (bodyA.label === "winkel" || bodyB.label === "winkel") {
@@ -257,12 +259,11 @@ function draw() {
   drawSprite(ball, ballImg);
   drawSprite(mauszeiger, mauszeigerImg);
 
-
   noStroke();
   fill(0);
 
 
-  scrollFollow(ball);
+  //scrollFollow(ball);
 
 
   // visualize collision
@@ -338,11 +339,32 @@ function keyPressed() {
   }
 }
 
+function scroll(x, y, speed) {
+  // stoppt eventuell existierendes Scrollen
+  if (scrollId) {
+    clearInterval(scrollId)
+  }
+  // Neues Scrollen festlegen - läuft bis die Zielposition erreicht ist,
+  // bzw. der Browser nicht mehr scrollen kann
+  let moved = true;
+  scrollId = setInterval(function() {
+console.log ('hallo')
+    if (moved) {
+      let posX = window.scrollX
+      let posY = window.scrollY
+      window.scrollTo(window.scrollX + Math.min(speed, Math.abs(x - window.scrollX)) * Math.sign(x - window.scrollX), window.scrollY + Math.min(speed, Math.abs(y - window.scrollY)) * Math.sign(y - window.scrollY))
+      moved = (posX != window.scrollX || posY != window.scrollY)
+      console.log(scrollId, window.scrollX, window.scrollY)
+    } else {
+      clearInterval(scrollId)
+      //console.log("DONE")
+    }
+  }, 40)
+}
 
 
 
-
-function scrollFollow(matterObj) {
+/*function scrollFollow(matterObj) {
   const $element = $('#parent');
   if (insideViewport($element, matterObj) == false) {
     if ($element.is(':animated') == false) {
@@ -351,10 +373,10 @@ function scrollFollow(matterObj) {
       }, 1000);
     }
   }
-}
+}*/
 
 
-function insideViewport(matterObj) {
+/*function insideViewport(matterObj) {
   const x = matterObj.position.x;
   const y = matterObj.position.y;
   const pageXOffset = window.pageXOffset || document.documentElement.scrollLeft;
@@ -365,7 +387,7 @@ function insideViewport(matterObj) {
   } else {
     return false;
   }
-}
+}*/
 
 /* function insideViewport(element, matterObj) {
   const x = matterObj.position.x;
