@@ -29,6 +29,8 @@ let soundfeld;
 let popup;
 let ground;
 let ground2;
+let ground3;
+let ground4;
 let ball;
 let canvas;
 let ballImg;
@@ -56,6 +58,9 @@ let treppe1;
 let treppe2;
 let treppe3;
 let treppe4;
+
+let portal;
+let portal2;
 
 let mausy = 530;
 let mausstep = 5;
@@ -128,6 +133,14 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true, label: 'ground2'
   });
 
+  ground3 = Bodies.rectangle(300, 780, 600, 8, {
+    isStatic: true, label: 'ground3'
+  });
+
+  ground4 = Bodies.rectangle(300, 905, 600, 8, {
+    isStatic: true, label: 'ground3'
+  });
+
   /* Soundfeld */
   soundfeld = Bodies.fromVertices(250, 150, Matter.Svg.pathToVertices(svgPathElement2), {
     isStatic: true, scale: 1, label: 'Soundfeld'
@@ -141,7 +154,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   /* Strichlinie */
   strichlinie = Bodies.fromVertices(60, 860, Matter.Svg.pathToVertices(svgPathElement4), {
     isStatic: true, scale: 1, label: 'Strichlinie'
-  });
+  }); console.log(strichlinie)
 
 
 
@@ -168,13 +181,22 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true, label: "winkel"
   });
 
+  /*  Portal  */
+  portal = Bodies.rectangle(470, 750, 30, 5, {
+    isStatic: true, label: "portal"
+  });
+
+  /*  Portal2  */
+  portal2 = Bodies.rectangle(30, 800, 30, 5, {
+    isStatic: true, label: "portal2"
+  });
 
 //ORDNER
-  /*  ordner1  */ ordner1 = Bodies.rectangle(450, 550, 60, 10, {
+  /*  ordner1  */ ordner1 = Bodies.rectangle(450, 550, 60, 2, {
     isStatic: true, label: "ordner1"
   });
 
-   /*  ordner2  */ ordner2 = Bodies.rectangle(55, 635, 60, 32, {
+   /*  ordner2  */ ordner2 = Bodies.rectangle(55, 620, 60, 2, {
     isStatic: true, label: "ordner2"
   });
 
@@ -233,7 +255,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     // change direction
     if (bodyA.label === "winkel" || bodyB.label === "winkel") {
       direction = -1;
-      scroll(0,600,30)
+      scroll(0, 600, 30)
     }
 
     if (bodyA.label === "ground2" || bodyB.label === "ground2") {
@@ -242,14 +264,19 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
     if (bodyA.label === "ordner1" || bodyB.label === "ordner1") {
       Body.setPosition(ball, { x: 55, y: 635 });
-      scroll (0,1210,30)
+      scroll(0, 1210, 30)
+    }
+
+    if (bodyA.label === "portal" || bodyB.label === "portal") {
+      Body.setPosition(ball, { x: 30, y: 805 });
+
     }
 
   });
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4]);
 
   Engine.run(engine);
 }
@@ -289,6 +316,8 @@ function draw() {
   drawBody(popup);
   drawBody(ground);
   drawBody(ground2);
+  drawBody(ground3);
+  drawBody(ground4);
   drawBody(seiter);
   drawBody(seitel);
   drawBody(winkel);
@@ -301,6 +330,8 @@ function draw() {
   drawBody(tastatur2);
   drawBody(tastatur3);
   drawBody(tastatur4);
+  drawBody(portal);
+  drawBody(portal2);
 
 
   // angle of propeller
@@ -313,10 +344,10 @@ function draw() {
   Body.setAngularVelocity(propeller2, 0.15);
   angle2 -= 0.07;
 
-  Body.setPosition(mauszeiger, {x: 150, y: mausy});
+  Body.setPosition(mauszeiger, { x: 150, y: mausy });
   mausy += mausstep
-  if (mausy < 510 || mausy > 570){
-    mausstep =- mausstep
+  if (mausy < 510 || mausy > 570) {
+    mausstep = - mausstep
   }
 
 
@@ -353,7 +384,7 @@ function scroll(x, y, speed) {
   // bzw. der Browser nicht mehr scrollen kann
   let moved = true;
   let element = document.getElementById('parent')
-  scrollId = setInterval(function() {
+  scrollId = setInterval(function () {
     if (moved) {
       let posX = element.scrollLeft
       let posY = element.scrollTop
