@@ -227,11 +227,13 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     const bodyB = pairs.bodyB;
     if (bodyA.label === "Soundfeld" || bodyB.label === "Soundfeld") {
       hitsound.play();
-      scroll(0, 500, 5);
+
+
     }
     // change direction
     if (bodyA.label === "winkel" || bodyB.label === "winkel") {
       direction = -1;
+      scroll(0,600,30)
     }
 
     if (bodyA.label === "ground2" || bodyB.label === "ground2") {
@@ -240,6 +242,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
     if (bodyA.label === "ordner1" || bodyB.label === "ordner1") {
       Body.setPosition(ball, { x: 55, y: 635 });
+      scroll (0,1210,30)
     }
 
   });
