@@ -56,8 +56,11 @@ let treppe2;
 let treppe3;
 let treppe4;
 
+let mausy = 500;
+let mausstep = 10;
+
 function preload() {
-  let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4, svgPathElement5;
+  let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4;
 
 
 
@@ -95,7 +98,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     max: { x: width, y: height }
   };
 
-  mauszeiger = Bodies.rectangle(100, 200, 10, 20, { restitution: 0 });
+  mauszeiger = Bodies.rectangle(150, mausy, 100, 100, { restitution: 0 });
 
   //PROPELLER
   propeller = Bodies.rectangle(460, 360, 55, 6, {
@@ -303,6 +306,12 @@ function draw() {
   Body.setAngle(propeller2, angle2);
   Body.setAngularVelocity(propeller2, 0.15);
   angle2 -= 0.07;
+
+  /*Body.setPosition(mauszeiger, {x: 150, y: mausy});
+  mausy += mausstep
+  if (mausy < 450 || mausy > 550){
+    mausstep =- mausstep
+  }*/
 
 
 
