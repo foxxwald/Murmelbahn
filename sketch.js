@@ -35,6 +35,7 @@ let ball;
 let canvas;
 let ballImg;
 let mauszeigerImg;
+let kastenImg;
 
 let ordner1;
 let ordner2;
@@ -46,6 +47,7 @@ let pantonekl;
 
 let herzkurve;
 let mauszeiger;
+let kasten;
 let yu;
 let strichlinie;
 let direction = 1;
@@ -102,6 +104,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
   ballImg = loadImage('Bilder/ball.png');
   mauszeigerImg = loadImage('Bilder/Mauszeiger.png');
+  kastenImg = loadImage('Bilder/kasten.jpg');
 
   engine = Engine.create();
 
@@ -113,6 +116,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   };
 
   mauszeiger = Bodies.rectangle(150, mausy, 100, 100, { restitution: 0 });
+  kasten = Bodies.rectangle(150, 100, 100, 100, { restitution: 0 , isStatic: true });
 
   //PROPELLER
   propeller = Bodies.rectangle(460, 360, 55, 6, {
@@ -168,10 +172,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   /* Strichlinie */
   strichlinie = Bodies.fromVertices(140, 880, Matter.Svg.pathToVertices(svgPathElement4), {
     isStatic: true, scale: 1, label: 'Strichlinie'
-  }); console.log(strichlinie)
-
-
-
+  });
 
   /* Herzkurve */
   console.log(svgPathElement1);
@@ -303,7 +304,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, kasten]);
 
   Engine.run(engine);
 }
@@ -318,6 +319,7 @@ function draw() {
 
   drawSprite(ball, ballImg);
   drawSprite(mauszeiger, mauszeigerImg);
+  drawSprite(kasten, kastenImg);
 
   noStroke();
   fill(0);
