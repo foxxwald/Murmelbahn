@@ -207,7 +207,11 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-/*  abgrenzung ordner 1  */ abgrenzungordner1 = Bodies.rectangle(480, 550, 2, 60, {
+/*  abgrenzung ordner 1  */ abgrenzungordner1 = Bodies.rectangle(480, 550, 2, 100, {
+    isStatic: true, label: "ordner1"
+  });
+
+  /*  abgrenzung ordner 2  */ abgrenzungordner2 = Bodies.rectangle(420, 575, 2, 50, {
     isStatic: true, label: "ordner1"
   });
 
@@ -299,7 +303,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2]);
 
   Engine.run(engine);
 }
@@ -352,6 +356,7 @@ function draw() {
   drawBody(ordner1);
   drawBody(ordner2);
   drawBody(abgrenzungordner1);
+  drawBody(abgrenzungordner2);
   drawBody(tastatur1);
   drawBody(tastatur2);
   drawBody(tastatur3);
