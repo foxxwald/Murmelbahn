@@ -147,12 +147,12 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /* Buchstaben YU */
-  yu = Bodies.fromVertices(60, 760, Matter.Svg.pathToVertices(svgPathElement3), {
+  yu = Bodies.fromVertices(70, 760, Matter.Svg.pathToVertices(svgPathElement3), {
     isStatic: true, scale: 1, label: 'Yu'
   });
 
   /* Strichlinie */
-  strichlinie = Bodies.fromVertices(60, 860, Matter.Svg.pathToVertices(svgPathElement4), {
+  strichlinie = Bodies.fromVertices(140, 880, Matter.Svg.pathToVertices(svgPathElement4), {
     isStatic: true, scale: 1, label: 'Strichlinie'
   }); console.log(strichlinie)
 
