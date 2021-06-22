@@ -78,7 +78,7 @@ function preload() {
 
 
 
-  httpGet("svg/matter.svg", "text", false, function(response) {
+  httpGet("svg/matter.svg", "text", false, function (response) {
     // when the HTTP request completes ...
     // 1. parse the svg and get the path
     const parser = new DOMParser();
@@ -104,8 +104,8 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   ballImg = loadImage('Bilder/ball.png');
-  mauszeigerImg = loadImage('Bilder/Mauszeiger.png');
-  kastenImg = loadImage('Bilder/kasten.png');
+  mauszeigerImg = loadImage('svg/Mauszeiger.svg');
+  kastenImg = loadImage('svg/Kasten.svg');
 
   engine = Engine.create();
 
@@ -279,22 +279,28 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   tastatur1 = Bodies.rectangle(117, 710, 25, 8, {
     isStatic: true,
   });
+  tastatur1.restitution = 1;
 
   /*  tastatur2  */
   tastatur2 = Bodies.rectangle(150, 710, 25, 8, {
     isStatic: true,
   });
 
+  tastatur2.restitution = 1;
+
   /*  tastatur3  */
   tastatur3 = Bodies.rectangle(203, 710, 75, 8, {
-    isStatic: true,
+    isStatic: true, restitution: 0.8,
   });
+
+  tastatur3.restitution = 1;
 
   /*  tastatur4  */
   tastatur4 = Bodies.rectangle(255, 710, 25, 8, {
     isStatic: true,
   });
 
+  tastatur4.restitution = 1;
 
   //TREPPE
   /*  Treppe1  */
@@ -325,7 +331,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   hitsound.playMode('sustain');
 
   // setup hit sound
-  Matter.Events.on(engine, 'collisionStart', function(event) {
+  Matter.Events.on(engine, 'collisionStart', function (event) {
     const pairs = event.pairs[0];
     const bodyA = pairs.bodyA;
     const bodyB = pairs.bodyB;
@@ -359,14 +365,24 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
       });
 
     }
-
+    /*  if (bodyA.label === "kasten" || bodyB.label === "portal") {
+       Body.setPosition(ball, {
+         x: 30,
+         y: 805
+       });
+ 
+     }
+  */
   });
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, /* mauszeiger */]);
 
   Engine.run(engine);
+
+  /*  Body.setPosition(ball, { x: 100, y: 600 });
+   scroll(0, 1210, 30);*/
 }
 
 function draw() {
@@ -378,8 +394,8 @@ function draw() {
   scale(2);
 
   drawSprite(ball, ballImg);
-  //drawSprite(mauszeiger, mauszeigerImg);
-  drawBody(mauszeiger);
+  drawSprite(mauszeiger, mauszeigerImg);
+  //drawBody(mauszeiger);
   drawSprite(kasten, kastenImg);
 
   noStroke();
@@ -472,12 +488,12 @@ function keyPressed() {
     // use current direction and velocity for the jump
     Body.applyForce(
       ball, {
-        x: ball.position.x,
-        y: ball.position.y
-      }, {
-        x: (0.001 * direction),
-        y: -0.005
-      }
+      x: ball.position.x,
+      y: ball.position.y
+    }, {
+      x: (0.001 * direction),
+      y: -0.005
+    }
     );
   }
 }
@@ -491,7 +507,7 @@ function scroll(x, y, speed) {
   // bzw. der Browser nicht mehr scrollen kann
   let moved = true;
   let element = document.getElementById('parent')
-  scrollId = setInterval(function() {
+  scrollId = setInterval(function () {
     if (moved) {
       let posX = element.scrollLeft
       let posY = element.scrollTop
