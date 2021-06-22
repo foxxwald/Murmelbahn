@@ -124,7 +124,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   };
 
   mauszeiger = Bodies.rectangle(150, mausy, 100, 100, { restitution: 0 });
-  kasten = Bodies.rectangle(150, 100, 100, 100, { restitution: 0 , isStatic: true });
+  kasten = Bodies.rectangle(150, 100, 100, 100, { restitution: 0, isStatic: true });
 
   //PROPELLER
   propeller = Bodies.rectangle(460, 360, 55, 6, {
@@ -334,15 +334,9 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, kasten]);
-=======
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke]);
->>>>>>> 3a90e8ad44d35f6030446c04955634d578571bfa
-=======
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, kastenlinie1, kastenlinie2, kastenlinie3, kastenlinie4]);
->>>>>>> 20e95c94020c63d775035203506e481832f1eb4b
+
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, kastenlinie1, kastenlinie2, kastenlinie3, kastenlinie4, kasten]);
+
 
   Engine.run(engine);
 }
