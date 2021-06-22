@@ -27,6 +27,7 @@ const drawSprite = Helpers.drawSprite;
 let hitsound;
 let soundfeld;
 let popup;
+let decke;
 let ground;
 let ground2;
 let ground3;
@@ -105,7 +106,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
   engine = Engine.create();
 
-  ball = Bodies.circle(100, 50, 10, { restitution: 0 });
+  ball = Bodies.circle(60, 7, 10, { restitution: 0 });
 
   ball.plugin.wrap = {
     min: { x: 0, y: 0 },
@@ -128,6 +129,11 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true, angle: Math.PI * 0.035
   });
 
+
+  /*  DECKE */
+  decke = Bodies.rectangle(300, 15, 450, 8, {
+    isStatic: true,
+  });
   /*  ground  */
   ground = Bodies.rectangle(260, 300, 485, 8, {
     isStatic: true,
@@ -303,7 +309,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke]);
 
   Engine.run(engine);
 }
@@ -343,6 +349,7 @@ function draw() {
   drawBody(propeller);
   drawBody(propeller2);
   drawBody(popup);
+  drawBody(decke);
   drawBody(ground);
   drawBody(ground2);
   drawBody(ground3);
