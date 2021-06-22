@@ -38,6 +38,13 @@ let ballImg;
 let mauszeigerImg;
 let kastenImg;
 
+
+let kastenlinie1;
+let kastenlinie2;
+let kastenlinie3;
+let kastenlinie4;
+
+
 let ordner1;
 let ordner2;
 let abgrenzungordner1;
@@ -223,6 +230,23 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
 
+  //KASTENLINIE
+/*  kastenlinie1  */ kastenlinie1 = Bodies.rectangle(450, 550, 60, 2, {
+    isStatic: true, label: "kastenlinie1"
+  });
+  /*  kastenlinie2  */ kastenlinie2 = Bodies.rectangle(450, 550, 60, 2, {
+    isStatic: true, label: "kastenlinie2"
+  });
+  /*  kastenlinie3  */ kastenlinie3 = Bodies.rectangle(450, 550, 60, 2, {
+    isStatic: true, label: "kastenlinie3"
+  });
+  /*  kastenlinie4  */ kastenlinie4 = Bodies.rectangle(450, 550, 60, 2, {
+    isStatic: true, label: "kastenlinie4"
+  });
+
+
+
+
 
 
 //ORDNER
@@ -311,10 +335,14 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, kasten]);
 =======
   World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke]);
 >>>>>>> 3a90e8ad44d35f6030446c04955634d578571bfa
+=======
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, kastenlinie1, kastenlinie2, kastenlinie3, kastenlinie4]);
+>>>>>>> 20e95c94020c63d775035203506e481832f1eb4b
 
   Engine.run(engine);
 }
@@ -345,7 +373,10 @@ function draw() {
     fill('pink');
   } */
 
-
+  drawBody(kastenlinie1);
+  drawBody(kastenlinie2);
+  drawBody(kastenlinie3);
+  drawBody(kastenlinie4);
 
   drawBody(treppe1);
   drawBody(treppe2);
