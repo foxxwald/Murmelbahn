@@ -57,6 +57,9 @@ let seiter;
 let seitel;
 let winkel;
 
+let abgrenzungtoogel1;
+let abgrenzungtoogel2;
+
 let tastatur1;
 let tastatur2;
 let tastatur3;
@@ -124,7 +127,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     }
   };
 
-  mauszeiger = Bodies.rectangle(150, mausy, 100, 100, {
+  mauszeiger = Bodies.rectangle(150, mausy, 30, 30, {
     isStatic: true
   });
   kasten = Bodies.rectangle(450, 850, 100, 100, {
@@ -180,7 +183,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true,
     label: 'pantone'
   });
-  pantonekl = Bodies.rectangle(330, 716, 25, 20, {
+  pantonekl = Bodies.rectangle(330.5, 716, 25, 19, {
     isStatic: true,
     label: 'pantonekl'
   });
@@ -249,16 +252,26 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   /*  abgrenzung ordner 1  */
   abgrenzungordner1 = Bodies.rectangle(480, 550, 2, 100, {
     isStatic: true,
-    label: "ordner1"
+
   });
 
   /*  abgrenzung ordner 2  */
   abgrenzungordner2 = Bodies.rectangle(420, 575, 2, 50, {
     isStatic: true,
-    label: "ordner1"
+
   });
 
+  /*  abgrenzung toogel 1  */
+  abgrenzungtoogel1 = Bodies.rectangle(455, 760, 2, 30, {
+    isStatic: true,
 
+  });
+
+  /*  abgrenzung toogel 2  */
+  abgrenzungtoogel2 = Bodies.rectangle(485, 730, 2, 90, {
+    isStatic: true,
+
+  });
 
 
   //ORDNER
@@ -377,12 +390,12 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, /* mauszeiger */]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2]);
 
   Engine.run(engine);
 
-  /*  Body.setPosition(ball, { x: 100, y: 600 });
-   scroll(0, 1210, 30);*/
+  Body.setPosition(ball, { x: 100, y: 600 });
+  scroll(0, 1210, 30);
 }
 
 function draw() {
@@ -443,6 +456,10 @@ function draw() {
   drawBody(tastatur4);
   drawBody(portal);
   drawBody(portal2);
+
+  drawBody(abgrenzungtoogel2);
+  drawBody(abgrenzungtoogel1);
+
   //drawBody(pantone);
 
   const collided = Matter.SAT.collides(pantone, ball).collided;
