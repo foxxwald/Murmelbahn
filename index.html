@@ -13,23 +13,43 @@
   <script language="javascript" type="text/javascript" src="../libraries/matter-wrap.js"></script>
   <script language="javascript" type="text/javascript" src="../libraries/helpers.js"></script>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
+  <!-- <script language="javascript" type="text/javascript" src="sketch2.js"></script> -->
   <script language="javascript" type="text/javascript" src="../libraries/jquery.min.js"></script>
   <style>
     body {
+      /* height: 200vh; */
       background-color: #cccccc;
-      background-image: url(Bilder/Hintergrund960.jpg);
+
+      background-image: url(Bilder/Schreibtischgroß.png);
       background-repeat: no-repeat;
-      /*   object-fit: cover; */
+      object-fit: cover;
       background-size: cover;
-      position: relative;
+      /* position: relative; */
       max-height: 100vh;
 
-      height: 100vh;
+      height: 1050px;
+      width: 1800px;
       margin: 0px;
       padding: 0px;
       display: block;
-      /*  background-position: center; */
+      /* background-position: center; */
+      background-attachment: fixed;
     }
+
+    /* #bild {
+      height: 200vh;
+      width: 100vw;
+    }
+
+    button {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      background-color: red;
+      width: 200px;
+      height: 150px;
+    } */
 
     #parent {
       position: absolute;
@@ -46,6 +66,21 @@
       margin: auto;
     }
 
+    /* #child {
+      position: absolute;
+      max-height: 300px;
+      height: 300px;
+      overflow: hidden;
+      top: 0px;
+      right: 0px;
+      left: 50px;
+      bottom: 0px;
+      border: 10px solid grey;
+      border-radius: 5px;
+      width: 1050px;
+      margin: auto;
+    } */
+
     #theCanvas {
       background-size: cover;
       background-image: url(Bilder/Innenleben960.svg);
@@ -53,11 +88,23 @@
     }
   </style>
 </head>
+<!--
+<script>
+
+  function doStuff() {
+    console.log("test")
+    window.scrollTo({ top: 5000, behavior: "smooth" });
+  }
+</script>
+-->
 
 <body>
+  <!-- <img id="bild" src="Bilder/Schreibtischgroß.png"> -->
   <div id="parent">
+    <!-- <div id=overflow></div> -->
     <div id="theCanvas"></div>
   </div>
+  <!-- <button onclick="doStuff()" click></button> -->
 </body>
 
 </html>
