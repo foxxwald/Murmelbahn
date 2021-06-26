@@ -37,6 +37,9 @@ let canvas;
 let ballImg;
 let mauszeigerImg;
 let kastenImg;
+let kasten2Img;
+let kasten3Img;
+let kasten4Img;
 
 let ordner1;
 let ordner2;
@@ -49,6 +52,9 @@ let pantonekl;
 let herzkurve;
 let mauszeiger;
 let kasten;
+let kasten2;
+let kasten3;
+let kasten4;
 let yu;
 let strichlinie;
 let direction = 1;
@@ -108,7 +114,10 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
   ballImg = loadImage('Bilder/ball.png');
   mauszeigerImg = loadImage('svg/Mauszeiger.svg');
-  kastenImg = loadImage('Bilder/Kasten123.jpg');
+  kastenImg = loadImage('svg/Kasten1.svg');
+  kasten2Img = loadImage('svg/Kasten2.svg');
+  kasten3Img = loadImage('svg/Kasten3.svg');
+  kasten4Img = loadImage('svg/Kasten4.svg');
 
   engine = Engine.create();
 
@@ -130,10 +139,26 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   mauszeiger = Bodies.rectangle(150, mausy, 30, 30, {
     isStatic: true
   });
-  kasten = Bodies.rectangle(450, 850, 100, 100, {
+  kasten = Bodies.rectangle(318, 845, 85, 55, {
     restitution: 0,
     isStatic: true
   });
+
+  kasten2 = Bodies.rectangle(375, 855, 75, 40, {
+    restitution: 0,
+    isStatic: true
+  });
+
+  kasten3 = Bodies.rectangle(435, 875, 85, 40, {
+    restitution: 0,
+    isStatic: true
+  });
+
+  kasten4 = Bodies.rectangle(480, 885, 45, 20, {
+    restitution: 0,
+    isStatic: true
+  });
+
 
   //PROPELLER
   propeller = Bodies.rectangle(460, 360, 55, 6, {
@@ -204,7 +229,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /* Strichlinie */
-  strichlinie = Bodies.fromVertices(140, 880, Matter.Svg.pathToVertices(svgPathElement4), {
+  strichlinie = Bodies.fromVertices(140, 890, Matter.Svg.pathToVertices(svgPathElement4), {
     isStatic: true,
     scale: 1,
     label: 'Strichlinie'
@@ -383,14 +408,14 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
          x: 30,
          y: 805
        });
- 
+
      }
   */
   });
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4]);
 
   Engine.run(engine);
 
@@ -410,6 +435,9 @@ function draw() {
   drawSprite(mauszeiger, mauszeigerImg);
   //drawBody(mauszeiger);
   drawSprite(kasten, kastenImg);
+  drawSprite (kasten2, kasten2Img);
+  drawSprite (kasten3, kasten3Img);
+  drawSprite (kasten4, kasten4Img);
 
   noStroke();
   fill(0);
@@ -456,6 +484,7 @@ function draw() {
   drawBody(tastatur4);
   drawBody(portal);
   drawBody(portal2);
+
 
   drawBody(abgrenzungtoogel2);
   drawBody(abgrenzungtoogel1);
