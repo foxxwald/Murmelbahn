@@ -468,13 +468,10 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-<<<<<<< HEAD
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3]);
-=======
+
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3,winkelk, winkelk2, winkelk3]);
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, winkelk, winkelk2, winkelk3]);
->>>>>>> 600b8b044a3b20a7956067dce030c224ee46c041
 
   Engine.run(engine);
 
