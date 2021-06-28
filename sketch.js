@@ -230,7 +230,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /* Strichlinie */
-  strichlinie = Bodies.fromVertices(140, 890, Matter.Svg.pathToVertices(svgPathElement4), {
+  strichlinie = Bodies.fromVertices(133, 875, Matter.Svg.pathToVertices(svgPathElement4), {
     isStatic: true,
     scale: 1,
     label: 'Strichlinie'
