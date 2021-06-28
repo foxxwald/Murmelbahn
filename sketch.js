@@ -71,6 +71,7 @@ let abgrenzungtoogel2;
 let mülleimer;
 let mülleimer2;
 let mülleimer3;
+let mülleimer4;
 
 let tastatur1;
 let tastatur2;
@@ -169,7 +170,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true
   });
 
-  kasten4 = Bodies.rectangle(449, 857, 45, 3, {
+  kasten4 = Bodies.rectangle(443, 857, 50, 3, {
     restitution: 0,
     isStatic: true
   });
@@ -272,7 +273,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /* Strichlinie */
-  strichlinie = Bodies.fromVertices(133, 875, Matter.Svg.pathToVertices(svgPathElement4), {
+  strichlinie = Bodies.fromVertices(133, 868, Matter.Svg.pathToVertices(svgPathElement4), {
     isStatic: true,
     scale: 1,
     label: 'Strichlinie'
@@ -343,19 +344,25 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   /*  Mülleimer1  */
-  mülleimer = Bodies.rectangle(487, 895, 2, 48, {
+  mülleimer = Bodies.rectangle(475, 895, 2, 78, {
     isStatic: true,
 
   });
 
   /*  Mülleimer2  */
-  mülleimer2 = Bodies.rectangle(503, 895, 2, 48, {
+  mülleimer2 = Bodies.rectangle(503, 895, 2, 78, {
     isStatic: true,
 
   });
 
   /*  Mülleimer3  */
-  mülleimer3 = Bodies.rectangle(495, 899, 15, 2, {
+  mülleimer3 = Bodies.rectangle(490, 899, 28, 2, {
+    isStatic: true,
+
+  });
+
+  /*  Mülleimer4  */
+  mülleimer4 = Bodies.rectangle(515, 857, 24, 2, {
     isStatic: true,
 
   });
@@ -475,7 +482,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3 /* winkelk, winkelk2, winkelk3 */]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3, mülleimer4 /* winkelk, winkelk2, winkelk3 */]);
 
 
 
@@ -496,7 +503,7 @@ function draw() {
 
   drawSprite(ball, ballImg);
   drawSprite(mauszeiger, mauszeigerImg);
-  image(mülleimerImg, 484, 870);
+  image(mülleimerImg, 476, 858);
 
 
   //drawBody(mauszeiger);
@@ -562,7 +569,7 @@ function draw() {
   drawBody(mülleimer);
   drawBody(mülleimer2);
   drawBody(mülleimer3);
-
+  drawBody(mülleimer4);
 
   drawBody(abgrenzungtoogel2);
   drawBody(abgrenzungtoogel1);
