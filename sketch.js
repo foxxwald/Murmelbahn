@@ -89,6 +89,9 @@ let portal2;
 let mausy = 530;
 let mausstep = 5;
 
+/* let kastenweiß;
+let test = false; */
+
 function preload() {
   let svgPathElement1, svgPathElement2, svgPathElement3, svgPathElement4;
 
@@ -190,6 +193,12 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
 
+
+  /*  kastenweiß = Bodies.rectangle(285, 834, 87, 10, {
+     restitution: 0,
+     isStatic: true,
+     label: 'kastenweiß'
+   }); */
 
 
   //PROPELLER
@@ -396,6 +405,8 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
+
+
   //load sound
   hitsound = loadSound("Sound/kla4mix.mp3");
   hitsound.playMode('sustain');
@@ -435,20 +446,17 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
       });
 
     }
-    if (bodyA.label === "winkelk" || bodyB.label === "winkelk") {
-      Body.setPosition(ball, {
-        x: 340,
-        y: 824
-      });
+    /* if (bodyA.label === "winkelk" || bodyB.label === "winkelk") {
+      test = true;
 
-    }
+    } */
   });
 
 
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, winkelk, winkelk2, winkelk3]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4 /* winkelk, winkelk2, winkelk3, */ /* kastenweiß */]);
 
   Engine.run(engine);
 
@@ -491,9 +499,9 @@ function draw() {
   drawBody(kasten3);
   drawBody(kasten4);
 
-  drawBody(winkelk);
+  /* drawBody(winkelk);
   drawBody(winkelk2);
-  drawBody(winkelk3);
+  drawBody(winkelk3); */
 
 
   drawBody(treppe1);
@@ -525,6 +533,8 @@ function draw() {
   drawBody(tastatur4);
   drawBody(portal);
   drawBody(portal2);
+  /*  if (test) { drawBody(kastenweiß) }; */
+
 
 
   drawBody(abgrenzungtoogel2);
