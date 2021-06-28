@@ -154,29 +154,29 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   //KÄSTEN
-  kasten = Bodies.rectangle(285, 824, 87, 3, {
+  kasten = Bodies.rectangle(278, 812, 80, 3, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten2 = Bodies.rectangle(342, 838, 87, 3, {
+  kasten2 = Bodies.rectangle(338, 825, 80, 3, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten3 = Bodies.rectangle(400, 854, 87, 3, {
+  kasten3 = Bodies.rectangle(393, 842, 80, 3, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten4 = Bodies.rectangle(449, 870, 65, 3, {
+  kasten4 = Bodies.rectangle(449, 857, 45, 3, {
     restitution: 0,
     isStatic: true
   });
 
   //WINKEL
 
-  winkelk = Bodies.rectangle(328.5, 805, 3, 40, {
+  /* winkelk = Bodies.rectangle(328.5, 805, 3, 40, {
     restitution: 0,
     isStatic: true,
     label: 'winkelk'
@@ -192,7 +192,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     restitution: 0,
     isStatic: true,
     label: 'winkelk3'
-  });
+  }); */
 
 
 
@@ -475,9 +475,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3, winkelk, winkelk2, winkelk3]);
-
-
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3 /* winkelk, winkelk2, winkelk3 */]);
 
 
 
