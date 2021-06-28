@@ -114,10 +114,10 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
   ballImg = loadImage('Bilder/ball.png');
   mauszeigerImg = loadImage('svg/Mauszeiger.svg');
-  kastenImg = loadImage('svg/Kasten1.svg');
-  kasten2Img = loadImage('svg/Kasten2.svg');
-  kasten3Img = loadImage('svg/Kasten3.svg');
-  kasten4Img = loadImage('svg/Kasten4.svg');
+  /*  kastenImg = loadImage('svg/Kasten1.svg');
+    kasten2Img = loadImage('svg/Kasten2.svg');
+    kasten3Img = loadImage('svg/Kasten3.svg');
+    kasten4Img = loadImage('svg/Kasten4.svg'); */
 
   engine = Engine.create();
 
@@ -139,22 +139,23 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   mauszeiger = Bodies.rectangle(150, mausy, 30, 30, {
     isStatic: true
   });
-  kasten = Bodies.rectangle(318, 845, 85, 55, {
+
+  kasten = Bodies.rectangle(318, 845, 3, 55, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten2 = Bodies.rectangle(375, 855, 75, 40, {
+  kasten2 = Bodies.rectangle(375, 855, 3, 40, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten3 = Bodies.rectangle(435, 875, 85, 40, {
+  kasten3 = Bodies.rectangle(435, 875, 3, 40, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten4 = Bodies.rectangle(480, 885, 45, 20, {
+  kasten4 = Bodies.rectangle(480, 885, 3, 20, {
     restitution: 0,
     isStatic: true
   });
@@ -434,10 +435,10 @@ function draw() {
   drawSprite(ball, ballImg);
   drawSprite(mauszeiger, mauszeigerImg);
   //drawBody(mauszeiger);
-  drawSprite(kasten, kastenImg);
-  drawSprite(kasten2, kasten2Img);
-  drawSprite(kasten3, kasten3Img);
-  drawSprite(kasten4, kasten4Img);
+  /*   drawSprite(kasten, kastenImg);
+    drawSprite(kasten2, kasten2Img);
+    drawSprite(kasten3, kasten3Img);
+    drawSprite(kasten4, kasten4Img); */
 
   noStroke();
   fill(0);
@@ -453,7 +454,10 @@ function draw() {
     fill('pink');
   } */
 
-
+  drawBody(kasten);
+  drawBody(kasten2);
+  drawBody(kasten3);
+  drawBody(kasten4);
 
   drawBody(treppe1);
   drawBody(treppe2);
@@ -526,9 +530,10 @@ function draw() {
 
 }
 
-function keyPressed() {
+function keyPressed(event) {
   // is SPACE pressed?
   if (keyCode === 32) {
+    event.preventDefault()
 
 
     // use current direction and velocity for the jump
