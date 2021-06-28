@@ -66,6 +66,10 @@ let winkel;
 let abgrenzungtoogel1;
 let abgrenzungtoogel2;
 
+let mülleimer;
+let mülleimer2;
+let mülleimer3;
+
 let tastatur1;
 let tastatur2;
 let tastatur3;
@@ -300,6 +304,24 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
 
+  /*  Mülleimer1  */
+  mülleimer = Bodies.rectangle(487, 895, 2, 48, {
+    isStatic: true,
+
+  });
+
+  /*  Mülleimer2  */
+  mülleimer2 = Bodies.rectangle(503, 895, 2, 48, {
+    isStatic: true,
+
+  });
+
+  /*  Mülleimer3  */
+  mülleimer3 = Bodies.rectangle(495, 899, 15, 2, {
+    isStatic: true,
+
+  });
+
   //ORDNER
   /*  ordner1  */
   ordner1 = Bodies.rectangle(450, 550, 60, 2, {
@@ -416,7 +438,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4]);
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, mülleimer, mülleimer2, mülleimer3]);
 
   Engine.run(engine);
 
@@ -488,7 +510,9 @@ function draw() {
   drawBody(tastatur4);
   drawBody(portal);
   drawBody(portal2);
-
+  drawBody(mülleimer);
+  drawBody(mülleimer2);
+  drawBody(mülleimer3);
 
   drawBody(abgrenzungtoogel2);
   drawBody(abgrenzungtoogel1);
