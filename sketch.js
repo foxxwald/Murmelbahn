@@ -36,10 +36,7 @@ let ball;
 let canvas;
 let ballImg;
 let mauszeigerImg;
-let kastenImg;
-let kasten2Img;
-let kasten3Img;
-let kasten4Img;
+let mülleimerImg;
 
 let ordner1;
 let ordner2;
@@ -51,10 +48,8 @@ let pantonekl;
 
 let herzkurve;
 let mauszeiger;
-let kasten;
-let kasten2;
-let kasten3;
-let kasten4;
+let mülleimerbild;
+
 
 let winkelk;
 let winkelk2;
@@ -128,6 +123,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
   ballImg = loadImage('Bilder/ball.png');
   mauszeigerImg = loadImage('svg/Mauszeiger.svg');
+  mülleimerImg = loadImage('svg/Mülleimerbild.svg');
   /*  kastenImg = loadImage('svg/Kasten1.svg');
     kasten2Img = loadImage('svg/Kasten2.svg');
     kasten3Img = loadImage('svg/Kasten3.svg');
@@ -153,6 +149,8 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   mauszeiger = Bodies.rectangle(150, mausy, 30, 30, {
     isStatic: true
   });
+
+
 
 
   //KÄSTEN
@@ -495,8 +493,12 @@ function draw() {
 
   scale(2);
 
+
   drawSprite(ball, ballImg);
   drawSprite(mauszeiger, mauszeigerImg);
+  image(mülleimerImg, 484, 870);
+
+
   //drawBody(mauszeiger);
   /*   drawSprite(kasten, kastenImg);
     drawSprite(kasten2, kasten2Img);
