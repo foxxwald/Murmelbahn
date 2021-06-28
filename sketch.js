@@ -293,7 +293,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /*  abgrenzung toogel 2  */
-  abgrenzungtoogel2 = Bodies.rectangle(485, 730, 2, 90, {
+  abgrenzungtoogel2 = Bodies.rectangle(485, 710, 2, 130, {
     isStatic: true,
 
   });
@@ -435,9 +435,9 @@ function draw() {
   drawSprite(mauszeiger, mauszeigerImg);
   //drawBody(mauszeiger);
   drawSprite(kasten, kastenImg);
-  drawSprite (kasten2, kasten2Img);
-  drawSprite (kasten3, kasten3Img);
-  drawSprite (kasten4, kasten4Img);
+  drawSprite(kasten2, kasten2Img);
+  drawSprite(kasten3, kasten3Img);
+  drawSprite(kasten4, kasten4Img);
 
   noStroke();
   fill(0);
