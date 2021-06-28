@@ -55,6 +55,13 @@ let kasten;
 let kasten2;
 let kasten3;
 let kasten4;
+
+let winkelk;
+let winkelk2;
+let winkelk3;
+
+
+
 let yu;
 let strichlinie;
 let direction = 1;
@@ -140,25 +147,49 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     isStatic: true
   });
 
-  kasten = Bodies.rectangle(318, 845, 3, 55, {
+
+  //KÄSTEN
+  kasten = Bodies.rectangle(285, 824, 87, 3, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten2 = Bodies.rectangle(375, 855, 3, 40, {
+  kasten2 = Bodies.rectangle(342, 838, 87, 3, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten3 = Bodies.rectangle(435, 875, 3, 40, {
+  kasten3 = Bodies.rectangle(400, 854, 87, 3, {
     restitution: 0,
     isStatic: true
   });
 
-  kasten4 = Bodies.rectangle(480, 885, 3, 20, {
+  kasten4 = Bodies.rectangle(449, 870, 65, 3, {
     restitution: 0,
     isStatic: true
   });
+
+  //WINKEL
+
+  winkelk = Bodies.rectangle(328.5, 805, 3, 40, {
+    restitution: 0,
+    isStatic: true,
+    label: 'winkelk'
+  });
+
+  winkelk2 = Bodies.rectangle(385.5, 821, 3, 40, {
+    restitution: 0,
+    isStatic: true,
+    label: 'winkelk2'
+  });
+
+  winkelk3 = Bodies.rectangle(443.5, 835, 3, 40, {
+    restitution: 0,
+    isStatic: true,
+    label: 'winkelk3'
+  });
+
+
 
 
   //PROPELLER
@@ -404,19 +435,20 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
       });
 
     }
-    /*  if (bodyA.label === "kasten" || bodyB.label === "portal") {
-       Body.setPosition(ball, {
-         x: 30,
-         y: 805
-       });
+    if (bodyA.label === "winkelk" || bodyB.label === "winkelk") {
+      Body.setPosition(ball, {
+        x: 340,
+        y: 824
+      });
 
-     }
-  */
+    }
   });
 
 
 
-  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4]);
+
+
+  World.add(engine.world, [ball, treppe1, treppe2, treppe3, treppe4, soundfeld, propeller, propeller2, popup, ground, ground2, seiter, seitel, winkel, herzkurve, yu, strichlinie, ordner1, ordner2, tastatur1, tastatur2, tastatur3, tastatur4, portal, portal2, ground3, ground4, pantonekl, pantone, abgrenzungordner1, abgrenzungordner2, decke, mauszeiger, abgrenzungtoogel1, abgrenzungtoogel2, kasten, kasten2, kasten3, kasten4, winkelk, winkelk2, winkelk3]);
 
   Engine.run(engine);
 
@@ -458,6 +490,11 @@ function draw() {
   drawBody(kasten2);
   drawBody(kasten3);
   drawBody(kasten4);
+
+  drawBody(winkelk);
+  drawBody(winkelk2);
+  drawBody(winkelk3);
+
 
   drawBody(treppe1);
   drawBody(treppe2);
