@@ -337,7 +337,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /*  abgrenzung toogel 2  */
-  abgrenzungtoogel2 = Bodies.rectangle(485, 710, 2, 130, {
+  abgrenzungtoogel2 = Bodies.rectangle(485, 700, 2, 170, {
     isStatic: true,
 
   });
@@ -350,7 +350,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
   /*  Mülleimer2  */
-  mülleimer2 = Bodies.rectangle(503, 895, 2, 78, {
+  mülleimer2 = Bodies.rectangle(503, 895, 2, 190, {
     isStatic: true,
 
   });
