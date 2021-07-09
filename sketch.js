@@ -403,7 +403,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   //LOAD SOUND
-  hitsound = loadSound("Sound/kla4mix.mp3");
+  hitsound = loadSound("Sound/Test.mp3");
   hitsound.playMode('sustain');
 
   // SETUP HIT SOUND
@@ -413,8 +413,6 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
     const bodyB = pairs.bodyB;
     if (bodyA.label === "Soundfeld" || bodyB.label === "Soundfeld") {
       hitsound.play();
-
-
     }
     // CHANGE DIRECTION
     if (bodyA.label === "winkel" || bodyB.label === "winkel") {
