@@ -100,7 +100,7 @@ function preload() {
 
 
 
-  httpGet("svg/matter.svg", "text", false, function (response) {
+  httpGet("svg/matter.svg", "text", false, function(response) {
     // when the HTTP request completes ...
     // 1. parse the svg and get the path
     const parser = new DOMParser();
@@ -195,7 +195,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   });
 
 
-  //DECKE 
+  //DECKE
   decke = Bodies.rectangle(300, 15, 450, 8, {
     isStatic: true,
   });
@@ -368,7 +368,8 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   tastatur3 = Bodies.rectangle(203, 710, 75, 8, {
-    isStatic: true, restitution: 0.8,
+    isStatic: true,
+    restitution: 0.8,
   });
 
   tastatur3.restitution = 1;
@@ -407,7 +408,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
   hitsound.playMode('sustain');
 
   // SETUP HIT SOUND
-  Matter.Events.on(engine, 'collisionStart', function (event) {
+  Matter.Events.on(engine, 'collisionStart', function(event) {
     const pairs = event.pairs[0];
     const bodyA = pairs.bodyA;
     const bodyB = pairs.bodyB;
@@ -489,47 +490,47 @@ function draw() {
     drawBody(kasten3);
     drawBody(kasten4);
 
-  
+
   drawBody(popup);
 
   drawBody(soundfeld);
     drawBody(herzkurve);
     drawBody(yu);
     drawBody(strichlinie);
-  
-  
+
+
     drawBody(decke);
     drawBody(ground);
     drawBody(ground2);
-    
+
     drawBody(ground4);
-    
+
     drawBody(treppe1);
   drawBody(treppe2);
   drawBody(treppe3);
   drawBody(treppe4);
   drawBody(ground3);
-  
+
     drawBody(seiter);
     drawBody(seitel);
     drawBody(winkel);
-  
-   
+
+
     drawBody(ordner1);
     drawBody(ordner2);
     drawBody(abgrenzungordner1);
     drawBody(abgrenzungordner2);
-  
+
     drawBody(tastatur1);
     drawBody(tastatur2);
     drawBody(tastatur3);
     drawBody(tastatur4);
-  
+
     drawBody(portal);
     drawBody(portal2);
     drawBody(abgrenzungtoogel2);
     drawBody(abgrenzungtoogel1);
-  
+
     drawBody(mülleimer);
     drawBody(mülleimer2);
     drawBody(mülleimer3);
@@ -582,12 +583,12 @@ function keyPressed(event) {
     // use current direction and velocity for the jump
     Body.applyForce(
       ball, {
-      x: ball.position.x,
-      y: ball.position.y
-    }, {
-      x: (0.001 * direction),
-      y: -0.005
-    }
+        x: ball.position.x,
+        y: ball.position.y
+      }, {
+        x: (0.001 * direction),
+        y: -0.005
+      }
     );
   }
 }
@@ -603,7 +604,7 @@ function scroll(x, y, speed) {
   // bzw. der Browser nicht mehr scrollen kann
   let moved = true;
   let element = document.getElementById('parent')
-  scrollId = setInterval(function () {
+  scrollId = setInterval(function() {
     if (moved) {
       let posX = element.scrollLeft
       let posY = element.scrollTop
