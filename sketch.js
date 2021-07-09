@@ -100,7 +100,7 @@ function preload() {
 
 
 
-  httpGet("svg/matter.svg", "text", false, function(response) {
+  httpGet("svg/matter.svg", "text", false, function (response) {
     // when the HTTP request completes ...
     // 1. parse the svg and get the path
     const parser = new DOMParser();
@@ -404,11 +404,11 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   //LOAD SOUND
-  hitsound = loadSound("Sound/Test.mp3");
+  hitsound = loadSound("Sound/Goodvibrations.mp3");
   hitsound.playMode('sustain');
 
   // SETUP HIT SOUND
-  Matter.Events.on(engine, 'collisionStart', function(event) {
+  Matter.Events.on(engine, 'collisionStart', function (event) {
     const pairs = event.pairs[0];
     const bodyA = pairs.bodyA;
     const bodyB = pairs.bodyB;
@@ -583,12 +583,12 @@ function keyPressed(event) {
     // use current direction and velocity for the jump
     Body.applyForce(
       ball, {
-        x: ball.position.x,
-        y: ball.position.y
-      }, {
-        x: (0.001 * direction),
-        y: -0.005
-      }
+      x: ball.position.x,
+      y: ball.position.y
+    }, {
+      x: (0.001 * direction),
+      y: -0.005
+    }
     );
   }
 }
@@ -604,7 +604,7 @@ function scroll(x, y, speed) {
   // bzw. der Browser nicht mehr scrollen kann
   let moved = true;
   let element = document.getElementById('parent')
-  scrollId = setInterval(function() {
+  scrollId = setInterval(function () {
     if (moved) {
       let posX = element.scrollLeft
       let posY = element.scrollTop
