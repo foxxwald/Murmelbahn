@@ -404,7 +404,7 @@ function setupMatter(svgPathElement1, svgPathElement2, svgPathElement3, svgPathE
 
 
   //LOAD SOUND
-  hitsound = loadSound("Sound/Goodvibrations.mp3");
+  hitsound = loadSound("Sound/goodvibrations.mp3");
   hitsound.playMode('sustain');
 
   // SETUP HIT SOUND
